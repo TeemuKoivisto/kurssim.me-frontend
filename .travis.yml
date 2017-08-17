@@ -7,3 +7,12 @@ notifications:
   email:
     on_success: never
     on_failure: never
+deploy:
+  provider: s3
+  access_key_id: AKIAJT2MCXPGUCCVZQ4A
+  secret_access_key:
+    secure: BQKllWHQA0r3T4D7i+4YSAR1+8vYQStVIcwInFMGh7U4J6M/N7KhA3zGLDLSmlbbs/jO0+TTX9XsIg4pnbR7awYy2s+c5c+FNpOEkMTB74h2AcSaJkkeR9qW00qQOLewczkqhzgysgk8JheTtsJhCUoj+dMXSlFAoQI+VvE+JFCsNeqoQa11PpNAKb4aVQoleT19p+pwWIBVxWe6Bvgns/FV4dK10YSlTpDZQxC1uQjN1KKjekricJeR17kHyXgULRFevE54cMpmEqgNXc246Pv9X46vLwZC+s1d5+HGOnx+phTFkLmdOnRfwvOXZjYUcc8dlWu/1xyxUF34Fcq+5W0QttfCRgKhy+KVfGPSGC8fPeV+/9JHxOuWVuXz4UP3YtqlUAHPUv3AvHeRklOdp/DLpll+xZ6MKnAfNpT4X7ArYFYVTaD0JsTPdsgwxIOo5S+IjwlOdu9eXVvMRUrs5Zi3n2KVLo362drWUG5d5qvYiNFXNKe9OifYkahwOygJu5wZCuRT09+wBeOOkZB816blXUdmIe04Y1WHyzNVhuHzXg7gXLdp9RaWNnZmyLxQNSAb+v4TpEgCVBBH0CdD+BKJJk4TSqx1emZ59f0eGoN4q5ONf13vR8/TH0bIYCwYqDXSVkhe7x66VCTynQbVVBL6DSNN2LiFr4hoWyUHvw8=
+  bucket: kurssim.me
+  acl: bucket_owner_full_control
+  on:
+    repo: varjo-oodi/kurssim.me-frontend
