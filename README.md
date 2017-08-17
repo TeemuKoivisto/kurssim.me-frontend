@@ -1,3 +1,10 @@
+
+# kurssim.me frontend [![Build Status](https://travis-ci.org/varjo-oodi/kurssim.me-frontend.svg?branch=master)](https://travis-ci.org/varjo-oodi/kurssim.me-frontend)
+
+1) Install Node.js >=6 using nvm
+2) Clone this repository and enter `npm i`
+3) Run it with `npm start`
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
