@@ -4,8 +4,7 @@ import axios from 'axios'
 function createRequest(request, token) {
   return axios({
       method: request.method,
-      // url: process.env.REACT_APP_API_URL + request.url,
-      url: 'https://weboodi.helsinki.fi/hy/api/public/opetushaku/hae?opas=5323',
+      url: process.env.REACT_APP_API_URL + request.url,
       data: request.data,
       headers: {
         Accept: 'application/json',

@@ -23,6 +23,21 @@ class FrontPage extends Component {
         </p>
         <button onClick={this.getCourses}>Get Courses</button>
         <p>kursseja yht: { courses.length }</p>
+        <h1>Kurssit</h1>
+        { courses.map(course => 
+          <div key={course.opintokohde.opintokohdeId}>
+            { course.opetustapahtumat.length > 0 ?
+              <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${course.opetustapahtumat[0].opetustapahtumaId}&html=1`}
+                target="_blank"
+              >
+                { course.opintokohde.opintokohteenNimi }
+              </a>
+                :
+              <a>{ course.opintokohde.opintokohteenNimi }</a>
+            }
+
+          </div>
+        )}
       </div>
     );
   }
