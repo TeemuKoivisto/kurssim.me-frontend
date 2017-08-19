@@ -17,7 +17,8 @@ class FrontPage extends Component {
        { name: "Periodi III", selected: true },
        { name: "Periodi IV", selected: true },
        { name: "Periodi V", selected: true },
-      ]
+      ],
+      view: "list"
     }
   }
 
@@ -38,6 +39,18 @@ class FrontPage extends Component {
 
   componentWillReceiveProps(newProps) {
     this.setRenderedCourses(newProps, this.state.selected.course)
+  }
+
+  handleClick(type, e) {
+    if (type === "selectList") {
+      const stateChange = Object.assign({}, this.state)
+      stateChange.selected.view = "list"
+      this.setState(stateChange)
+    } else if (type === "selectTable") {
+      const stateChange = Object.assign({}, this.state)
+      stateChange.selected.view = "table"
+      this.setState(stateChange)
+    }
   }
 
   handleChange(type, e) {
@@ -77,7 +90,7 @@ class FrontPage extends Component {
     )
   }
 
-  renderCourseItem(course) {
+  renderCourseListItem(course) {
     const { opintokohde, opetustapahtumat } = course
     return (
       <div>
@@ -117,17 +130,66 @@ class FrontPage extends Component {
     )
   }
 
-  renderCourses() {
+  renderCourseTableItem(course) {
+    const { opintokohde, opetustapahtumat } = course
+    return (
+      <div>
+        <a href={`https://weboodi.helsinki.fi/hy/opintjakstied.jsp?OpinKohd=${opintokohde.opintokohdeId}`}
+          target="_blank">
+          { opintokohde.opintokohteenNimi + " " + opintokohde.laajuusOp + " op"}
+        </a>
+        <div>
+          { opetustapahtumat.map(studyEvent => 
+            <div key={studyEvent.opetustapahtumaId}>
+              { studyEvent.ilmoittautumiskelpoinen ?
+                <i className="fa fa-check" aria-hidden="true"></i>
+                  : 
+                <i className="fa fa-times" aria-hidden="true"></i>
+              }
+              <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${studyEvent.opetustapahtumaId}&html=1`}
+                target="_blank">
+                { studyEvent.opetustapahtumanNimi + " " + studyEvent.laajuusOp + " op, " + studyEvent.opetustapahtumanTyyppiSelite }
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
+
+  renderCoursesList() {
     const { renderedCourses } = this.state
     return (
       <div>
         { renderedCourses.map((course, i) => 
           <div key={course.opintokohde.opintokohdeId + i} className="course__item">
-            { this.renderCourseItem(course) }
+            { this.renderCourseListItem(course) }
           </div>
         )}
       </div>
     )
+  }
+
+  renderCoursesTable() {
+    const { renderedCourses } = this.state
+    return (
+      <div>
+        { renderedCourses.map((course, i) => 
+          <div key={course.opintokohde.opintokohdeId + i} className="course__item">
+            { this.renderCourseTableItem(course) }
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  renderCourses() {
+    const { view } = this.state.selected
+    if (view === "list") {
+      return this.renderCoursesList()
+    } else {
+      return this.renderCoursesTable()      
+    }
   }
 
   render() {
@@ -137,6 +199,10 @@ class FrontPage extends Component {
       <div className="front-page--container">
         { this.renderSearch() }
         { this.renderPeriods() }
+        <div>
+          <button onClick={this.handleClick.bind(this, "selectList")}>Lista</button>
+          <button onClick={this.handleClick.bind(this, "selectTable")}>Taulukko</button>
+        </div>
         <p>Kursseja yhteensä: { courses.length }</p>
         <p>Näytettyjä kursseja: { renderedCourses.length }</p>
         <h1>Kurssimme</h1>
