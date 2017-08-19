@@ -70,7 +70,7 @@ class FrontPage extends Component {
           <select onChange={this.handleChange.bind(this, "selectCourse")}
             value={course}
           >
-            <option value="tkt">Tietojenkäsittelytiede, 2017-18</option>
+            <option value="tkt">Tietojenkäsittelytieteen laitos</option>
             <option value="5323">Tietojenkäsittelytieteen kandiohjelma, 2017-18</option>
             <option value="5351">Tietojenkäsittelytieteen maisteriohjelma, 2017-18</option>
           </select>

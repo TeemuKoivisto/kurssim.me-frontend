@@ -15,7 +15,7 @@ export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case COURSE_GET_ALL + '_SUCCESS':
       return state.merge({
-        courses: [...action.payload.bachelorCourses, ...action.payload.masterCourses],
+        courses: action.payload.courses,
         bachelorCourses: action.payload.bachelorCourses,
         masterCourses: action.payload.masterCourses,
       })
