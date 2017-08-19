@@ -138,9 +138,9 @@ class FrontPage extends Component {
           target="_blank">
           { opintokohde.opintokohteenNimi + " " + opintokohde.laajuusOp + " op"}
         </a>
-        <div>
+        <div className="course-table__item__study-event--container">
           { opetustapahtumat.map(studyEvent => 
-            <div key={studyEvent.opetustapahtumaId}>
+            <div key={studyEvent.opetustapahtumaId} className="course-table__item__study-event">
               { studyEvent.ilmoittautumiskelpoinen ?
                 <i className="fa fa-check" aria-hidden="true"></i>
                   : 
@@ -148,7 +148,7 @@ class FrontPage extends Component {
               }
               <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${studyEvent.opetustapahtumaId}&html=1`}
                 target="_blank">
-                { studyEvent.opetustapahtumanNimi + " " + studyEvent.laajuusOp + " op, " + studyEvent.opetustapahtumanTyyppiSelite }
+                { studyEvent.opetustapahtumanTyyppiSelite + " " + studyEvent.laajuusOp + " op"}
               </a>
             </div>
           )}
