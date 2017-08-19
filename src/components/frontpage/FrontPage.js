@@ -78,36 +78,40 @@ class FrontPage extends Component {
   }
 
   renderCourseItem(course) {
-    const { opintokohde } = course
-    const opetustapahtuma = course.opetustapahtumat.length > 0 ? course.opetustapahtumat[0] : {}
+    const { opintokohde, opetustapahtumat } = course
     return (
       <div>
-        { opetustapahtuma.ilmoittautumiskelpoinen ?
-          <i className="fa fa-check" aria-hidden="true"></i>
-            : 
-            <i className="fa fa-times" aria-hidden="true"></i>
-        }
-        { opetustapahtuma.opetustapahtumaId ?
-          <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${opetustapahtuma.opetustapahtumaId}&html=1`}
-            target="_blank"
-          >
-            { opintokohde.opintokohteenNimi + " " + opintokohde.laajuusOp + " op"}
-          </a>
-            :
-          <a>{ opintokohde.opintokohteenNimi }</a>
-        }
+        <a href={`https://weboodi.helsinki.fi/hy/opintjakstied.jsp?OpinKohd=${opintokohde.opintokohdeId}`}
+          target="_blank">
+          { opintokohde.opintokohteenNimi + " " + opintokohde.laajuusOp + " op"}
+        </a>
         <div>
-          <span>{ "Tyyppi: " + opetustapahtuma.opetustapahtumanTyyppiSelite }</span>
-          <br></br>
-          <span>{ "Ilmoittautuminen alkaa: " + new Date(opetustapahtuma.ilmAlkPvm).toLocaleString() }</span>
-          <br></br>
-          <span>{ "Ilmoittautuminen päättyy: " + new Date(opetustapahtuma.ilmPaatPvm).toLocaleString() }</span>
-          <br></br>
-          <span>{ "Kurssi alkaa: " + new Date(opetustapahtuma.alkuPvm).toLocaleString() }</span>
-          <br></br>
-          <span>{ "Kurssi loppuu: " + new Date(opetustapahtuma.loppuPvm).toLocaleString() }</span>
-          <br></br>
-          <span>{ "Vastuuopettaja: " + opetustapahtuma.vastuuopettaja }</span>
+          { opetustapahtumat.map(studyEvent => 
+            <div key={studyEvent.opetustapahtumaId}>
+              { studyEvent.ilmoittautumiskelpoinen ?
+                <i className="fa fa-check" aria-hidden="true"></i>
+                  : 
+                <i className="fa fa-times" aria-hidden="true"></i>
+              }
+              <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${studyEvent.opetustapahtumaId}&html=1`}
+                target="_blank">
+                { studyEvent.opetustapahtumanNimi + " " + studyEvent.laajuusOp + " op" }
+              </a>
+              <div>
+                <span>{ "Tyyppi: " + studyEvent.opetustapahtumanTyyppiSelite }</span>
+                <br></br>
+                <span>{ "Ilmoittautuminen alkaa: " + new Date(studyEvent.ilmAlkPvm).toLocaleString() }</span>
+                <br></br>
+                <span>{ "Ilmoittautuminen päättyy: " + new Date(studyEvent.ilmPaatPvm).toLocaleString() }</span>
+                <br></br>
+                <span>{ "Kurssi alkaa: " + new Date(studyEvent.alkuPvm).toLocaleString() }</span>
+                <br></br>
+                <span>{ "Kurssi loppuu: " + new Date(studyEvent.loppuPvm).toLocaleString() }</span>
+                <br></br>
+                <span>{ "Vastuuopettaja: " + studyEvent.vastuuopettaja }</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     )
