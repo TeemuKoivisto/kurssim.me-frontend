@@ -1,5 +1,5 @@
 
-# kurssim.me frontend [![Build Status](https://travis-ci.org/varjo-oodi/kurssim.me-frontend.svg?branch=master)](https://travis-ci.org/varjo-oodi/kurssim.me-frontend)
+# [kurssim.me](https://kurssim.me) frontend [![Build Status](https://travis-ci.org/varjo-oodi/kurssim.me-frontend.svg?branch=master)](https://travis-ci.org/varjo-oodi/kurssim.me-frontend)
 
 1) Install Node.js >=6 using nvm
 2) Clone this repository and enter `npm i`
