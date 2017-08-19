@@ -6,6 +6,7 @@ import FrontPage from './components/frontpage/FrontPage';
 import { configureStore } from './store'
 import registerServiceWorker from './registerServiceWorker';
 
+import 'font-awesome/css/font-awesome.css'
 import './index.css'
 
 const store = configureStore()

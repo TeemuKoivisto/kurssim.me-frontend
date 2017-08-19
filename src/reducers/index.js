@@ -1,5 +1,5 @@
 
-import { combineReducers } from 'redux-immutablejs'
+import { combineReducers } from 'redux-immutable'
 import auth from './auth'
 import course from './course'
 
