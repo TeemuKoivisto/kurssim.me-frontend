@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import { getCourses } from '../../actions/course'
 
+import CourseTable from '../course/CourseTable'
+
 import './FrontPage.css'
 
 class FrontPage extends Component {
@@ -20,16 +22,6 @@ class FrontPage extends Component {
       ],
       view: "list"
     }
-  }
-
-  filterCourses(courses) {
-    return courses.filter(course => {
-      // jos ilmon/voimassaolon alkupäivä on yli puolivuotta sitten
-      // entäs clojure kurssi..?
-      if (course.opetustapahtumat.length > 0) {
-        return course
-      }
-    })
   }
 
   setRenderedCourses(props, selectedCourse) {
@@ -105,114 +97,6 @@ class FrontPage extends Component {
     )
   }
 
-  renderCourseListItem(course) {
-    const { id, tag, name, type, credits, events } = course
-    return (
-      <div>
-        <a href={`https://weboodi.helsinki.fi/hy/opintjakstied.jsp?OpinKohd=${id}`}
-          target="_blank">
-          { name + " " + credits + " op"}
-        </a>
-        <div>
-          { events.map((studyEvent, i) => 
-            <div key={studyEvent.id + i}>
-              { studyEvent.open ?
-                <i className="fa fa-check" aria-hidden="true"></i>
-                  : 
-                <i className="fa fa-times" aria-hidden="true"></i>
-              }
-              <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${studyEvent.id}&html=1`}
-                target="_blank">
-                { studyEvent.expired ?
-                  `${studyEvent.name} <vanha>`
-                    :
-                  `${studyEvent.name} ${studyEvent.credits} op`
-                }
-              </a>
-              <div>
-                <span>{ "Tyyppi: " + studyEvent.format }</span>
-                <br></br>
-                <span>{ "Opintoni date: " + studyEvent.opintoniStartDate }</span>
-                <br></br>
-                <span>{ "Ilmoittautuminen alkaa: " + new Date(studyEvent.enrolmentStartDate).toLocaleString() }</span>
-                <br></br>
-                <span>{ "Ilmoittautuminen päättyy: " + new Date(studyEvent.enrolmentStartDate).toLocaleString() }</span>
-                <br></br>
-                <span>{ "Kurssi alkaa: " + new Date(studyEvent.startDate).toLocaleString() }</span>
-                <br></br>
-                <span>{ "Kurssi loppuu: " + new Date(studyEvent.endDate).toLocaleString() }</span>
-                <br></br>
-                <span>{ "Vastuuopettaja: " + studyEvent.teachers[0] }</span>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    )
-  }
-
-  renderCourseTableItem(course) {
-    const { id, tag, name, type, credits, events } = course
-    return (
-      <div>
-        <a href={`https://weboodi.helsinki.fi/hy/opintjakstied.jsp?OpinKohd=${id}`}
-          target="_blank">
-          { name + " " + credits + " op"}
-        </a>
-        <div className="course-table__item__study-event--container">
-          { events.map((studyEvent, i) => 
-            <div key={studyEvent.id + i} className="course-table__item__study-event">
-              { studyEvent.open ?
-                <i className="fa fa-check" aria-hidden="true"></i>
-                  : 
-                <i className="fa fa-times" aria-hidden="true"></i>
-              }
-              <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${studyEvent.id}&html=1`}
-                target="_blank">
-                { studyEvent.name + " " + studyEvent.credits + " op"}
-              </a>
-            </div>
-          )}
-        </div>
-      </div>
-    )
-  }
-
-  renderCoursesList() {
-    const { renderedCourses } = this.state
-    return (
-      <div>
-        { renderedCourses.map((course, i) => 
-          <div key={course.id + i} className="course__item">
-            { this.renderCourseListItem(course) }
-          </div>
-        )}
-      </div>
-    )
-  }
-
-  renderCoursesTable() {
-    const { renderedCourses } = this.state
-    return (
-      <div>
-        { renderedCourses.map((course, i) => 
-          <div key={course.id + i} className="course__item">
-            { this.renderCourseTableItem(course) }
-          </div>
-        )}
-      </div>
-    )
-  }
-
-  renderCourses() {
-    const { view } = this.state.selected
-    if (view === "list") {
-      return this.renderCoursesList()
-    } else {
-      return this.renderCoursesTable()      
-    }
-  }
-
   render() {
     const { renderedCourses } = this.state
     const { courses } = this.props
@@ -227,7 +111,7 @@ class FrontPage extends Component {
         <p>Kursseja yhteensä: { courses.length }</p>
         <p>Näytettyjä kursseja: { renderedCourses.length }</p>
         <h1>Kurssimme</h1>
-        { this.renderCourses() }
+        <CourseTable courses={renderedCourses}/>
       </div>
     );
   }
