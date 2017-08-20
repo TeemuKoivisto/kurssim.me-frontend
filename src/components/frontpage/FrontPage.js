@@ -123,10 +123,16 @@ class FrontPage extends Component {
               }
               <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${studyEvent.id}&html=1`}
                 target="_blank">
-                { studyEvent.name + " " + studyEvent.credits + " op" }
+                { studyEvent.expired ?
+                  `${studyEvent.name} <vanha>`
+                    :
+                  `${studyEvent.name} ${studyEvent.credits} op`
+                }
               </a>
               <div>
                 <span>{ "Tyyppi: " + studyEvent.format }</span>
+                <br></br>
+                <span>{ "Opintoni date: " + studyEvent.opintoniStartDate }</span>
                 <br></br>
                 <span>{ "Ilmoittautuminen alkaa: " + new Date(studyEvent.enrolmentStartDate).toLocaleString() }</span>
                 <br></br>
