@@ -7,8 +7,6 @@ import {
 
 const INITIAL_STATE = fromJS({
   courses: [],
-  bachelorCourses: [],
-  masterCourses: [],
 })
 
 export default function (state = INITIAL_STATE, action) {
@@ -16,8 +14,6 @@ export default function (state = INITIAL_STATE, action) {
     case COURSE_GET_ALL + '_SUCCESS':
       return state.merge({
         courses: action.payload.courses,
-        bachelorCourses: action.payload.bachelorCourses,
-        masterCourses: action.payload.masterCourses,
       })
     case COURSE_GET_ALL + '_REQUEST':
     case COURSE_GET_ALL + '_FAIL':

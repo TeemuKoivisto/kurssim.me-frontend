@@ -22,15 +22,28 @@ class FrontPage extends Component {
     }
   }
 
+  filterCourses(courses) {
+    return courses.filter(course => {
+      // jos ilmon/voimassaolon alkupäivä on yli puolivuotta sitten
+      // entäs clojure kurssi..?
+      if (course.opetustapahtumat.length > 0) {
+        return course
+      }
+    })
+  }
+
   setRenderedCourses(props, selectedCourse) {
-    const { courses, bachelorCourses, masterCourses } = props
-    if (selectedCourse === "tkt") {
-      this.setState({ renderedCourses: courses })
-    } else if (selectedCourse === "5323") {
-      this.setState({ renderedCourses: bachelorCourses })      
-    } else if (selectedCourse === "5351") {
-      this.setState({ renderedCourses: masterCourses })      
-    }
+    const { courses } = props
+    this.setState({
+      renderedCourses: courses,
+    })
+    // this.setState({ renderedCourses: this.filterCourses(courses) })
+    // if (selectedCourse === "tkt") {
+    // } else if (selectedCourse === "5323") {
+    //   this.setState({ renderedCourses: bachelorCourses })      
+    // } else if (selectedCourse === "5351") {
+    //   this.setState({ renderedCourses: masterCourses })      
+    // }
   }
 
   componentDidMount() {
@@ -70,9 +83,11 @@ class FrontPage extends Component {
           <select onChange={this.handleChange.bind(this, "selectCourse")}
             value={course}
           >
-            <option value="tkt">Tietojenkäsittelytieteen laitos</option>
-            <option value="5323">Tietojenkäsittelytieteen kandiohjelma, 2017-18</option>
-            <option value="5351">Tietojenkäsittelytieteen maisteriohjelma, 2017-18</option>
+            <option value="all">Kaikki</option>
+            <option value="tktl">Tietojenkäsittelytieteen laitos</option>
+            <option value="kandi">Tietojenkäsittelytieteen kandiohjelma, 2017-18</option>
+            <option value="maisteri">Tietojenkäsittelytieteen maisteriohjelma, 2017-18</option>
+            <option value="data">Datatieteen maisteriohjelma, 2017-18</option>
           </select>
         </div>
       </div>
@@ -91,37 +106,37 @@ class FrontPage extends Component {
   }
 
   renderCourseListItem(course) {
-    const { opintokohde, opetustapahtumat } = course
+    const { id, tag, name, type, credits, events } = course
     return (
       <div>
-        <a href={`https://weboodi.helsinki.fi/hy/opintjakstied.jsp?OpinKohd=${opintokohde.opintokohdeId}`}
+        <a href={`https://weboodi.helsinki.fi/hy/opintjakstied.jsp?OpinKohd=${id}`}
           target="_blank">
-          { opintokohde.opintokohteenNimi + " " + opintokohde.laajuusOp + " op"}
+          { name + " " + credits + " op"}
         </a>
         <div>
-          { opetustapahtumat.map(studyEvent => 
-            <div key={studyEvent.opetustapahtumaId}>
-              { studyEvent.ilmoittautumiskelpoinen ?
+          { events.map((studyEvent, i) => 
+            <div key={studyEvent.id + i}>
+              { studyEvent.open ?
                 <i className="fa fa-check" aria-hidden="true"></i>
                   : 
                 <i className="fa fa-times" aria-hidden="true"></i>
               }
-              <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${studyEvent.opetustapahtumaId}&html=1`}
+              <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${studyEvent.id}&html=1`}
                 target="_blank">
-                { studyEvent.opetustapahtumanNimi + " " + studyEvent.laajuusOp + " op" }
+                { studyEvent.name + " " + studyEvent.credits + " op" }
               </a>
               <div>
-                <span>{ "Tyyppi: " + studyEvent.opetustapahtumanTyyppiSelite }</span>
+                <span>{ "Tyyppi: " + studyEvent.format }</span>
                 <br></br>
-                <span>{ "Ilmoittautuminen alkaa: " + new Date(studyEvent.ilmAlkPvm).toLocaleString() }</span>
+                <span>{ "Ilmoittautuminen alkaa: " + new Date(studyEvent.enrolmentStartDate).toLocaleString() }</span>
                 <br></br>
-                <span>{ "Ilmoittautuminen päättyy: " + new Date(studyEvent.ilmPaatPvm).toLocaleString() }</span>
+                <span>{ "Ilmoittautuminen päättyy: " + new Date(studyEvent.enrolmentStartDate).toLocaleString() }</span>
                 <br></br>
-                <span>{ "Kurssi alkaa: " + new Date(studyEvent.alkuPvm).toLocaleString() }</span>
+                <span>{ "Kurssi alkaa: " + new Date(studyEvent.startDate).toLocaleString() }</span>
                 <br></br>
-                <span>{ "Kurssi loppuu: " + new Date(studyEvent.loppuPvm).toLocaleString() }</span>
+                <span>{ "Kurssi loppuu: " + new Date(studyEvent.endDate).toLocaleString() }</span>
                 <br></br>
-                <span>{ "Vastuuopettaja: " + studyEvent.vastuuopettaja }</span>
+                <span>{ "Vastuuopettaja: " + studyEvent.teachers[0] }</span>
               </div>
             </div>
           )}
@@ -131,24 +146,24 @@ class FrontPage extends Component {
   }
 
   renderCourseTableItem(course) {
-    const { opintokohde, opetustapahtumat } = course
+    const { id, tag, name, type, credits, events } = course
     return (
       <div>
-        <a href={`https://weboodi.helsinki.fi/hy/opintjakstied.jsp?OpinKohd=${opintokohde.opintokohdeId}`}
+        <a href={`https://weboodi.helsinki.fi/hy/opintjakstied.jsp?OpinKohd=${id}`}
           target="_blank">
-          { opintokohde.opintokohteenNimi + " " + opintokohde.laajuusOp + " op"}
+          { name + " " + credits + " op"}
         </a>
         <div className="course-table__item__study-event--container">
-          { opetustapahtumat.map(studyEvent => 
-            <div key={studyEvent.opetustapahtumaId} className="course-table__item__study-event">
-              { studyEvent.ilmoittautumiskelpoinen ?
+          { events.map((studyEvent, i) => 
+            <div key={studyEvent.id + i} className="course-table__item__study-event">
+              { studyEvent.open ?
                 <i className="fa fa-check" aria-hidden="true"></i>
                   : 
                 <i className="fa fa-times" aria-hidden="true"></i>
               }
-              <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${studyEvent.opetustapahtumaId}&html=1`}
+              <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${studyEvent.id}&html=1`}
                 target="_blank">
-                { studyEvent.opetustapahtumanTyyppiSelite + " " + studyEvent.laajuusOp + " op"}
+                { studyEvent.name + " " + studyEvent.credits + " op"}
               </a>
             </div>
           )}
@@ -162,7 +177,7 @@ class FrontPage extends Component {
     return (
       <div>
         { renderedCourses.map((course, i) => 
-          <div key={course.opintokohde.opintokohdeId + i} className="course__item">
+          <div key={course.id + i} className="course__item">
             { this.renderCourseListItem(course) }
           </div>
         )}
@@ -175,7 +190,7 @@ class FrontPage extends Component {
     return (
       <div>
         { renderedCourses.map((course, i) => 
-          <div key={course.opintokohde.opintokohdeId + i} className="course__item">
+          <div key={course.id + i} className="course__item">
             { this.renderCourseTableItem(course) }
           </div>
         )}
@@ -215,9 +230,7 @@ class FrontPage extends Component {
 const mapStateToProps = (state) => {
   const course_r = state.get('course')
   return {
-    courses: course_r.get('courses').toJS(),
-    bachelorCourses: course_r.get('bachelorCourses').toJS(),
-    masterCourses: course_r.get('masterCourses').toJS(),
+    courses: course_r.get('courses') ? course_r.get('courses').toJS() : [],
   }
 }
 
