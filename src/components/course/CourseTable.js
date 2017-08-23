@@ -5,27 +5,25 @@ import './CourseTable.css'
 class CourseTable extends Component {
 
   renderTableItem(course) {
-    const { id, tag, name, type, credits, events } = course
+    const { id, name, credits, open, startDate, endDate, format } = course
+    // TODO?: display dates dd.mm.yyyy
+    const start = new Date(startDate).toLocaleDateString()
+    const end = new Date(endDate).toLocaleDateString()
+
     return (
-      <div>
-        <a href={`https://weboodi.helsinki.fi/hy/opintjakstied.jsp?OpinKohd=${id}`}
-          target="_blank">
-          { name + " " + credits + " op"}
-        </a>
-        <div className="course-table__item__study-event--container">
-          { events.map((studyEvent, i) => 
-            <div key={studyEvent.id + i} className="course-table__item__study-event">
-              { studyEvent.open ?
-                <i className="fa fa-check" aria-hidden="true"></i>
-                  : 
-                <i className="fa fa-times" aria-hidden="true"></i>
-              }
-              <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${studyEvent.id}&html=1`}
-                target="_blank">
-                { studyEvent.name + " " + studyEvent.credits + " op"}
-              </a>
-            </div>
-          )}
+      <div className="course-table__item__study-event--container">
+        <div className="course-table__item__study-event__study-event">
+          { open ?
+            <i className="fa fa-check" aria-hidden="true"></i>
+              : 
+            <i className="fa fa-times" aria-hidden="true"></i>
+          }
+          <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${id}&html=1`}
+            target="_blank">
+            { name + " " + credits + " op"}
+          </a>
+          <p>{`${start} - ${end}`}</p>
+          <p>{format}</p>
         </div>
       </div>
     )
@@ -36,7 +34,8 @@ class CourseTable extends Component {
     return (
       <div>
         { courses.map((course, i) => 
-          <div key={course.id + i} className="course__item">
+          // Some course id's are undefined
+          <div key={i} className="course__item">
             { this.renderTableItem(course) }
           </div>
         )}
