@@ -117,12 +117,9 @@ class FrontPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const course_r = state.get('course')
-  return {
-    courses: course_r.get('courses') ? course_r.get('courses').toJS() : [],
-  }
-}
+const mapStateToProps = (state) => ({
+  courses: state.course.courses
+})
 
 const mapDispatchToProps = (dispatch) => ({
   getCourses() {
