@@ -6,77 +6,33 @@ import './CourseTable.css'
 class CourseTable extends Component {
 
   state = {
-    types: ['Perusopinnot', 'Aineopinnot', 'Syventävät Opinnot', 'Seminaari']
+    types: ['Perusopinnot', 'Aineopinnot', 'Syventävät Opinnot', 'Seminaari'],    
   }
 
-  renderTableItem(course) {
-    const { id, name, credits, open, startDate, endDate, format } = course
-    // TODO?: display dates dd.mm.yyyy
-    const start = new Date(startDate).toLocaleDateString()
-    const end = new Date(endDate).toLocaleDateString()
-
-    return (
-      <div className="course-table__item__study-event--container">
-        <div className="course-table__item__study-event__study-event">
-          { open ?
-            <i className="fa fa-check" aria-hidden="true"></i>
-              : 
-            <i className="fa fa-times" aria-hidden="true"></i>
-          }
-          <a href={`https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=${id}&html=1`}
-            target="_blank">
-            { name + " " + credits + " op"}
-          </a>
-        </div>
-      </div>
+  groupCoursesByType(courses) {
+    const { types } = this.state
+    const basicCourses = courses.filter(course => course.type.toLowerCase() === types[0].toLowerCase())
+    const fieldCourses = courses.filter(course => course.type.toLowerCase() === types[1].toLowerCase())
+    const advancedCourses = courses.filter(course =>
+      // Include only advancedCourses but not seminars
+      course.type.toLowerCase() === types[2].toLowerCase() && course.format.toLowerCase() !== types[3].toLowerCase()
     )
-  }
-
-  renderCourse(course) {
-    const { id, name, credits, open, startDate, endDate, format } = course
-    // TODO?: display dates dd.mm.yyyy
-    const start = new Date(startDate).toLocaleDateString()
-    const end = new Date(endDate).toLocaleDateString()
-    return (
-      <div className="course-table__item">
-        <h5 className="course-table__item__header">
-          { open ?
-            <i className="fa fa-check" aria-hidden="true"></i>
-              : 
-            <i className="fa fa-times" aria-hidden="true"></i>
-          }
-          { name }
-        </h5>
-        <div>{ `${start}-${end}`}</div>
-      </div>
-    )
+    const seminars = courses.filter(course => course.format.toLowerCase() === types[3].toLowerCase())
+    return [basicCourses, fieldCourses, advancedCourses, seminars]
   }
 
   render() {
     const { courses } = this.props
     const { types } = this.state
-    const basicCourses = courses.filter(course => course.type.toLowerCase() === types[0].toLowerCase())
-    const fieldCourses = courses.filter(course => course.type.toLowerCase() === types[1].toLowerCase())
-    const advancedCourses = courses.filter(course => course.type.toLowerCase() === types[2].toLowerCase())
-    const seminars = courses.filter(course => course.format.toLowerCase() === types[3].toLowerCase())
+    const groupedCourses = this.groupCoursesByType(courses)
     return (
       <div className="course-table">
-        <CourseTableSection title={types[0]} courses={basicCourses}/>
-        <CourseTableSection title={types[1]} courses={fieldCourses}/>
-        <CourseTableSection title={types[2]} courses={advancedCourses}/>
-        <CourseTableSection title={types[3]} courses={seminars}/>
+        <CourseTableSection title={types[0]} courses={groupedCourses[0]}/>
+        <CourseTableSection title={types[1]} courses={groupedCourses[1]}/>
+        <CourseTableSection title={types[2]} courses={groupedCourses[2]}/>
+        <CourseTableSection title={types[3]} courses={groupedCourses[3]}/>
       </div>
     )
-    // return (
-    //   <div>
-    //     { courses.map((course, i) => 
-    //       // Some course id's are undefined
-    //       <div key={i} className="course__item">
-    //         { this.renderTableItem(course) }
-    //       </div>
-    //     )}
-    //   </div>
-    // )
   }
 }
 

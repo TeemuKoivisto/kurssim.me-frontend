@@ -47,21 +47,28 @@ class CourseTableSection extends Component {
     )
   }
 
+  renderRow(courseRow) {
+    return(
+      <div className="course-table__row">
+        { courseRow.map(course => 
+          this.renderCourse(course)
+        )}
+      </div>
+    )
+  }
+
   render() {
     const { title, courses } = this.props
+    const coursesInRowsOf3 = []
+    for(var i = 0; i < courses.length; i+=3) {
+      coursesInRowsOf3.push(courses.slice(i, i+3))
+    }
     return (
       <div className="course-table-section">
         <h2>{ title }</h2>
-        <div className="course-table__row">
-          { courses.slice(0, 3).map(course => 
-            this.renderCourse(course)
-          )}
-        </div>
-        <div className="course-table__row">
-          { courses.slice(3, 6).map(course => 
-            this.renderCourse(course)
-          )}
-        </div>
+        { coursesInRowsOf3.map((courseRow) => 
+          this.renderRow(courseRow)
+        )}
       </div>
     )
   }
