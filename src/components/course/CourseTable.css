@@ -39,3 +39,17 @@
   margin: 0;
   padding: 0;
 }
+
+.course-table__item__header-text {
+  margin: 0 4px 0 1px;
+}
+
+.course-table__item__teacher__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.course-table__item__teacher__item {
+  margin: 0;
+}
