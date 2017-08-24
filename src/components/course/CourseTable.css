@@ -12,3 +12,30 @@
 .course-table__item__study-event {
   margin: 0 7.5px 2px 7.5px;
 }
+
+.course-table {
+  justify-content: center;
+}
+
+.course-table__section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.course-table__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.course-table__item {
+  width: 100%;
+  margin: 5px 5px 5px 5px;
+  border: 1px solid black;
+}
+
+.course-table__item__header {
+  margin: 0;
+  padding: 0;
+}
