@@ -17,6 +17,11 @@
   justify-content: center;
 }
 
+.course-table__table {
+  width: 100%;
+  text-align: left;
+}
+
 .course-table__section {
   display: flex;
   flex-direction: column;
@@ -30,9 +35,12 @@
 }
 
 .course-table__item {
+}
+
+.course-table__item__body {
+  display: flex;
+  flex-direction: row;
   width: 100%;
-  margin: 5px 5px 5px 5px;
-  border: 1px solid black;
 }
 
 .course-table__item__header {
@@ -40,8 +48,24 @@
   padding: 0;
 }
 
+.course-table__item__date {
+}
+
 .course-table__item__header-text {
   margin: 0 4px 0 1px;
+}
+
+.course-table__item__info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 0 2px 15px;
+}
+
+.course-table__item__format {
+}
+
+.course-table__item__enrollment {
 }
 
 .course-table__item__teacher__list {

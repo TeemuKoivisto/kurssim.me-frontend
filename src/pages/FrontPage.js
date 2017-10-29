@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { getCourses } from '../../actions/course'
+import { getCourses } from '../actions/course'
 
-import CourseTable from '../course/CourseTable'
+import CourseTable from '../components/CourseTable'
 
 import './FrontPage.css'
 
