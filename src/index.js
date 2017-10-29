@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import FrontPage from './pages/FrontPage';
 
 import { configureStore } from './store'
-// import registerServiceWorker from './registerServiceWorker';
+import unregister from './registerServiceWorker';
 
 import 'font-awesome/css/font-awesome.css'
 import './index.css'
@@ -18,4 +18,4 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-// registerServiceWorker()
+unregister()
