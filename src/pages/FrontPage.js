@@ -110,7 +110,7 @@ class FrontPage extends Component {
         </div>
         <p>Kursseja yhteensä: { courses.length }</p>
         <p>Näytettyjä kursseja: { renderedCourses.length }</p>
-        <h1>Kurssimme</h1>
+        <h1 className="main-header">Kurssimme</h1>
         <CourseTable courses={renderedCourses}/>
       </div>
     );
