@@ -38,18 +38,25 @@ class FrontPage extends Component {
       id: "data_maisteri",
       name: "Datatieteen maisteriohjelma, 2017-18"
     }],
-    study_fields2: ["tkt_kandi", "tkt_maisteri", "data_maisteri"],
-    courses: []
   }
 
-  setRenderedCourses(props, field) {
+  setRenderedCourses(props, fieldId) {
     const { courses } = props
-    if (field === "all") {
+    if (fieldId === "all") {
+      // Filter duplicate courses since some courses belong to multiple study-fields
+      let uniqueIds = []
+      let filteredCourses = []
+      courses.forEach(c => {
+        if (!uniqueIds.includes(c.id)) {
+          filteredCourses.push(c)
+          uniqueIds.push(c.id)
+        }
+      })
       this.setState({
-        renderedCourses: courses,
+        renderedCourses: filteredCourses,
       })
     } else {
-      const filteredCourses = courses.filter(c => c.study_field === field)
+      const filteredCourses = courses.filter(c => c.study_field === fieldId)
       this.setState({
         renderedCourses: filteredCourses
       })
@@ -116,7 +123,6 @@ class FrontPage extends Component {
 
   render() {
     const { renderedCourses } = this.state
-    const { courses } = this.props
     return (
       <div className="front-page--container">
         { this.renderSearch() }
@@ -125,8 +131,7 @@ class FrontPage extends Component {
           <button onClick={this.handleClick.bind(this, "selectList")}>Lista</button>
           <button onClick={this.handleClick.bind(this, "selectTable")}>Taulukko</button>
         </div>
-        <p>Kursseja yhteensä: { courses.length }</p>
-        <p>Näytettyjä kursseja: { renderedCourses.length }</p>
+        <p>Kursseja yhteensä: { renderedCourses.length }</p>
         <h1 className="main-header">Kurssimme</h1>
         <CourseTable courses={renderedCourses}/>
       </div>
