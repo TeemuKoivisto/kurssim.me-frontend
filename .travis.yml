@@ -4,11 +4,10 @@ node_js:
 addons:
   apt:
     packages:
-      - python3
       - python3-pip
 install:
   - npm i
-  - pip3 install awscli
+  - pip3 install --user awscli
 after_success:
   - npm run build
 deploy:
