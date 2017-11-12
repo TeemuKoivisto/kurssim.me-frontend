@@ -1,13 +1,9 @@
 language: node_js
 node_js:
   - 8
-addons:
-  apt:
-    packages:
-      - python3-pip
 install:
   - npm i
-  - pip3 install --user awscli
+  - pip install --user awscli
 after_success:
   - npm run build
 deploy:
