@@ -12,7 +12,10 @@ class FrontPage extends Component {
   state = {
     renderedCourses: [],
     selected: {
-      study_field: "all",
+      study_field: {
+        id: "all",
+        name: "Kaikki"
+      },
       periods: [
        { name: "Periodi I", selected: true },
        { name: "Periodi II", selected: true },
@@ -22,22 +25,35 @@ class FrontPage extends Component {
       ],
       view: "list"
     },
-    study_fields: ["tkt_kandi", "tkt_maisteri", "data_maisteri"],
+    study_fields: [{
+      id: "all",
+      name: "Kaikki"
+    }, {
+      id: "tkt_kandi",
+      name: "Tietojenkäsittelytieteen kandiohjelma, 2017-18"
+    }, {
+      id: "tkt_maisteri",
+      name: "Tietojenkäsittelytieteen maisteriohjelma, 2017-18"
+    }, {
+      id: "data_maisteri",
+      name: "Datatieteen maisteriohjelma, 2017-18"
+    }],
+    study_fields2: ["tkt_kandi", "tkt_maisteri", "data_maisteri"],
     courses: []
   }
 
-  setRenderedCourses(props, selectedCourse) {
+  setRenderedCourses(props, field) {
     const { courses } = props
-    this.setState({
-      renderedCourses: courses,
-    })
-    // this.setState({ renderedCourses: this.filterCourses(courses) })
-    // if (selectedCourse === "tkt") {
-    // } else if (selectedCourse === "5323") {
-    //   this.setState({ renderedCourses: bachelorCourses })      
-    // } else if (selectedCourse === "5351") {
-    //   this.setState({ renderedCourses: masterCourses })      
-    // }
+    if (field === "all") {
+      this.setState({
+        renderedCourses: courses,
+      })
+    } else {
+      const filteredCourses = courses.filter(c => c.study_field === field)
+      this.setState({
+        renderedCourses: filteredCourses
+      })
+    }
   }
 
   componentDidMount() {
@@ -45,7 +61,7 @@ class FrontPage extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    this.setRenderedCourses(newProps, this.state.selected.course)
+    this.setRenderedCourses(newProps, this.state.selected.study_field.id)
   }
 
   handleClick(type, e) {
@@ -61,26 +77,26 @@ class FrontPage extends Component {
   }
 
   handleChange(type, e) {
-    if (type === "selectCourse") {
+    if (type === "selectStudyField") {
       const stateChange = Object.assign({}, this.state)
-      stateChange.selected.course = e.target.value
+      stateChange.selected.study_field = e.target.value
       this.setState(stateChange)
-      this.setRenderedCourses(this.props, this.state.selected.course)
+      this.setRenderedCourses(this.props, this.state.selected.study_field)
     }
   }
 
   renderSearch() {
-    const { course } = this.state.selected
+    const { study_fields } = this.state
+    const { study_field } = this.state.selected
     return (
       <div className="course-search--container">
         <div>
-          <select onChange={this.handleChange.bind(this, "selectCourse")}
-            value={course}
+          <select onChange={this.handleChange.bind(this, "selectStudyField")}
+            value={study_field.name}
           >
-            <option value="all">Kaikki</option>
-            <option value="tkt_kandi">Tietojenkäsittelytieteen kandiohjelma, 2017-18</option>
-            <option value="tkt_maisteri">Tietojenkäsittelytieteen maisteriohjelma, 2017-18</option>
-            <option value="data_maisteri">Datatieteen maisteriohjelma, 2017-18</option>
+          { study_fields.map(f => 
+            <option key={f.id} value={f.id}>{f.name}</option>
+          )}
           </select>
         </div>
       </div>
