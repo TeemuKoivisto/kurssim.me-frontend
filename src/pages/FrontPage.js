@@ -12,7 +12,7 @@ class FrontPage extends Component {
   state = {
     renderedCourses: [],
     selected: {
-      course: "tkt",
+      study_field: "all",
       periods: [
        { name: "Periodi I", selected: true },
        { name: "Periodi II", selected: true },
@@ -21,7 +21,9 @@ class FrontPage extends Component {
        { name: "Periodi V", selected: true },
       ],
       view: "list"
-    }
+    },
+    study_fields: ["tkt_kandi", "tkt_maisteri", "data_maisteri"],
+    courses: []
   }
 
   setRenderedCourses(props, selectedCourse) {
@@ -76,10 +78,9 @@ class FrontPage extends Component {
             value={course}
           >
             <option value="all">Kaikki</option>
-            <option value="tktl">Tietojenkäsittelytieteen laitos</option>
-            <option value="kandi">Tietojenkäsittelytieteen kandiohjelma, 2017-18</option>
-            <option value="maisteri">Tietojenkäsittelytieteen maisteriohjelma, 2017-18</option>
-            <option value="data">Datatieteen maisteriohjelma, 2017-18</option>
+            <option value="tkt_kandi">Tietojenkäsittelytieteen kandiohjelma, 2017-18</option>
+            <option value="tkt_maisteri">Tietojenkäsittelytieteen maisteriohjelma, 2017-18</option>
+            <option value="data_maisteri">Datatieteen maisteriohjelma, 2017-18</option>
           </select>
         </div>
       </div>

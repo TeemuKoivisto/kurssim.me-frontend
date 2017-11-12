@@ -21,28 +21,22 @@ class CourseTableSection extends Component {
     }
   }
 
-  renderCourse(course) {
-    const { id, name, credits, open, stardivate, endDate, enrolmentStardivate, enrolmentEndDate, teachers, format } = course
-    // TODO?: display dates dd.mm.yyyy
-    const start = new Date(stardivate).toLocaleDateString()
-    const end = new Date(endDate).toLocaleDateString()
-    const enrolStart = new Date(enrolmentStardivate).toLocaleDateString()
-    const enrolEnd = new Date(enrolmentEndDate).toLocaleDateString()
+  formatDate(start, end) {
+    return end ? `${start}-${end}` : start
+  }
 
-    const infoRow = this.state.shownCourseDetail[course.id] ? 
-      <li className="course-list__item__info">
-        <div className="course-list__item__format">{ format }</div>
-        <div className="course-list__item__enrollment">{ `Ilmo: ${enrolStart}-${enrolEnd}`}</div>
-        <ul className="course-list__item__teacher__list">
-        { teachers.map(teacher => 
-          <li className="course-list__item__teacher__item" key={`${course.id}-${teacher}`}>
-            {teacher}
-          </li>
-        )}
-        </ul>
-      </li>
-        :
-      null
+  renderCourse(course) {
+    const { id, name, credits, open, start_date, end_date, enrollment_start_date, enrollment_end_date, teachers, format } = course
+    // TODO?: display dates dd.mm.yyyy
+    const date = this.formatDate(start_date, end_date)
+    const enrollmentDate = this.formatDate(enrollment_start_date, enrollment_end_date)
+    // const start = new Date(start_date).toLocaleDateString()
+    // const end = new Date(end_date).toLocaleDateString()
+    // const enrolStart = new Date(enrollment_start_date).toLocaleDateString()
+    // const enrolEnd = new Date(enrollment_end_date).toLocaleDateString()
+
+    const visibilityClass = this.state.shownCourseDetail[course.id] ? '' : 'hidden'
+    // const visibilityClass = this.state.shownCourseDetail[course.id] ? 'slide-in' : 'slide-out'
 
     return [
       <li className="course-list__item" onClick={this.handleShowDetailClick.bind(this, course)} key={`${course.id}`}>
@@ -60,10 +54,20 @@ class CourseTableSection extends Component {
             </a>
           </h5>
         </div>
-        <div className="col--date">{ `${start}-${end}`}</div>
+        <div className="col--date">{ date }</div>
         <div className="col--credits">{ credits }</div>
       </li>,
-      infoRow
+      <li className={`course-list__item__info ${visibilityClass}`}>
+        <div className="course-list__item__format">{ format }</div>
+        <div className="course-list__item__enrollment">{ `Ilmo: ${enrollmentDate}`}</div>
+        <ul className="course-list__item__teacher__list">
+        { teachers.map(teacher => 
+          <li className="course-list__item__teacher__item" key={`${course.id}-${teacher}`}>
+            {teacher}
+          </li>
+        )}
+        </ul>
+      </li>
     ]
   }
 
