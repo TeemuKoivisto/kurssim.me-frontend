@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-  export AWS_PROFILE=$1
-fi
+# if [ -z "$1" ]; then
+#   export AWS_PROFILE=$1
+# fi
 
 # Copy the build into bucket and delete all existing files
 aws s3 sync ./build s3://kurssim.me \
