@@ -1,21 +1,16 @@
 language: node_js
 node_js:
-- '8'
+  - 8
+install:
+  - npm i
+  - pip install awscli
 after_success:
-- npm run build
+  - npm run build
 deploy:
-  provider: s3
-  access_key_id: AKIAJL253ZVIR3JJXJBQ
-  secret_access_key:
-    secure: VOtarbsbCPi275WROkiQ3u8mFDFk6YC0ttxSlMzXLibZTHLlowzj76/tJuFQ4cmlmDCBsED9UUEVO9aHnfFxucct9orfhcxtPEnyeon49B5V/38M7uvkwKN5QT/IgqJCPcHWjMR7kbfKzlXTWqHd7HrJhfoKje7o7ESJa20Ko7VqVPAXXNTkA0sR7Cvw6ag62QKLH57OJEvP2DAyukq3V1NENL1llQDW6gFVjzDjoJkvHfSsF/DeJt2FIQIC5xNiW9g3L20WM6Lrs0iB88W+9Sjx0kCJAILdjxL03TJRdIDJMHWyh26oWCt2TrRECGC59lMU04YTuj4imdQTmkh+eAOnJUP1nqpydiLm5qejfsTTNnhNm3rJNNQ0aowUjH0isoLW8iRPLKkrgo6bERpmJrKTkgsNWlC1TkZJUl4dkE06Xv9sQEdAYADmpkANSB1GyGe4t86a3N5A7BfymS/FDrYsLkW3Zn8IRP6qMJkVbQr5kDK9dBIgSaNvBVbylR4/2IBh+kqJSOrRBizXPNWhOMk1hOLWlmxfg6tiRSpuvEbqZ1N+ukIzMEBGWP04ybghY9oqVRbnCU/GOz3yYYuL6wQyhNf77Cqqgv4f9hj85cUvvOFIwWgckEvxykNFtWU2Yh9p5Cmk6J4XGPVUdgPYpCU06VJ8h4XlRCE0Eu9kGAg=
-  bucket: kurssim.me
+  provider: script
+  script: ./deploy.sh
   skip_cleanup: true
-  local_dir: build
-  acl: bucket_owner_full_control
-  region: eu-central-1
   on:
-    repo: varjo-oodi/kurssim.me-frontend
+    branch: master
 notifications:
-  email:
-    on_success: never
-    on_failure: never
+  email: false
