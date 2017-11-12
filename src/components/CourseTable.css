@@ -25,6 +25,7 @@
 }
 
 .col--credits {
+  text-align: center;
   width: 5%;
   min-width: 50px;
 }

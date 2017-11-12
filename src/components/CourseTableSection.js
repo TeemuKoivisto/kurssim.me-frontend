@@ -26,9 +26,9 @@ class CourseTableSection extends Component {
   }
 
   renderCourse(course) {
-    const { id, name, credits, open, start_date, end_date, enrollment_start_date, enrollment_end_date, teachers, format } = course
+    const { id, name, credits, open, start_date, enrollment_start_date, enrollment_end_date, teachers, format } = course
     // TODO?: display dates dd.mm.yyyy
-    const date = this.formatDate(start_date, end_date)
+    const date = start_date
     const enrollmentDate = this.formatDate(enrollment_start_date, enrollment_end_date)
     // const start = new Date(start_date).toLocaleDateString()
     // const end = new Date(end_date).toLocaleDateString()
@@ -79,7 +79,7 @@ class CourseTableSection extends Component {
         <div className="course-list__container">
           <div className="course-list__header">
             <span className="col--name">Nimi</span>
-            <span className="col--date">Aika</span>
+            <span className="col--date">Aloituspäivä</span>
             <span className="col--credits">Nopat</span>
           </div>
           <ul className="course-list">
