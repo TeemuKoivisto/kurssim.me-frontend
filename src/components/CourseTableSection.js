@@ -9,7 +9,6 @@ class CourseTableSection extends Component {
   }
 
   handleShowDetailClick(course, e) {
-    console.log("he", course.id)
     if (this.state.shownCourseDetail[course.id]) {
       const stateChange = {...this.state}
       stateChange.shownCourseDetail[course.id] = undefined
