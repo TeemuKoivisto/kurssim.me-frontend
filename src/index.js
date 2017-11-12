@@ -4,7 +4,6 @@ import { Provider } from 'react-redux'
 import FrontPage from './pages/FrontPage';
 
 import { configureStore } from './store'
-import unregister from './registerServiceWorker';
 
 import 'font-awesome/css/font-awesome.css'
 import './index.css'
@@ -17,5 +16,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 )
-
-unregister()
