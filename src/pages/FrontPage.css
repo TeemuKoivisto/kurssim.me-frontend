@@ -1,6 +1,7 @@
 .front-page--container {
-  margin: 20px 10px 10px 10px;
   text-align: center;
+  margin: auto;
+  padding: 0 10px;
 }
 
 .course-search--container {
@@ -11,4 +12,10 @@
 
 .main-header {
   margin: 40px 0 40px 0;
+}
+
+@media screen and (min-width: 1040px){
+  .front-page--container {
+    max-width: 1200px;
+  }
 }
