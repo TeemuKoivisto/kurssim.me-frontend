@@ -1,9 +1,14 @@
 
 # [kurssim.me](https://kurssim.me) frontend [![Build Status](https://travis-ci.org/varjo-oodi/kurssim.me-frontend.svg?branch=master)](https://travis-ci.org/varjo-oodi/kurssim.me-frontend)
 
-1) Install Node.js >=6 using nvm
+1) Install Node.js >=8 using nvm
 2) Clone this repository and enter `npm i`
-3) Run it with `npm start`
+3) Get the course data with `./get-courses.sh` (if you don't have permissions to run it use `chmod 744 get-courses.sh`)
+4) Run it with `npm start`
+
+NOTE: You don't have to have backend running. All the data is in the JSON-file. Cool huh! (and cheap)
+
+# Create-react-app junk below
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 

@@ -13,14 +13,14 @@ class CourseTableSection extends Component {
       stateChange.shownCourseDetail[course.id] = undefined
       this.setState(stateChange)
     } else {
-      const stateChange = { ...this.state };
-      stateChange.shownCourseDetail[course.id] = course;
+      const stateChange = { ...this.state }
+      stateChange.shownCourseDetail[course.id] = course
       this.setState(stateChange);
     }
   }
 
   formatDate(start, end) {
-    return end ? `${start} - ${end}` : `${start} -`;
+    return end ? `${start} - ${end}` : `${start} -`
   }
 
   renderCourse(course) {
@@ -36,7 +36,8 @@ class CourseTableSection extends Component {
       opintoni_url,
       oodi_url,
       teachers,
-      format
+      format,
+      groups
     } = course;
     const date = this.formatDate(start_date, end_date)
     const enrollmentDate = this.formatDate(
@@ -48,7 +49,7 @@ class CourseTableSection extends Component {
       ? ""
       : "hidden"
     // const visibilityClass = this.state.shownCourseDetail[course.id] ? 'slide-in' : 'slide-out'
-
+    // {"enrolled": 8, "enrollment_max": 99, "enrollment_start_date": "14.08.17", "enrollment_end_date": "20.10.17", "group_name": "Ryhm\u00e4 99 (Jono - jos ryhm\u00e4t ovat t\u00e4ynn\u00e4 tai ajat eiv\u00e4t sovi)", "group_teacher": "", "schedule": [{"time": "06.09.17", "classroom": ""}], "group_languages": ""}]}
     return [
       <div className="course-list__item__container">
         <div
@@ -116,13 +117,42 @@ class CourseTableSection extends Component {
             </div>
           </div>
         </div>
+        <div className={`course-list__item__groups ${visibilityClass}`}>
+          <div className="course-list__item__groups__header">
+              <div className="course-list__item__group__name">Nimi</div>
+              <div className="course-list__item__group__teacher">Vetäjä</div>
+              <div className="course-list__item__group__enrolled">Ilm.</div>
+              <div className="course-list__item__group__maximum">Max</div>
+              <div className="course-list__item__group__time">Pvm</div>
+              <div className="course-list__item__group__classroom">Luokka</div>
+          </div>
+          { groups.map(group =>
+            <div className="course-list__item__groups__group">
+              <div className="course-list__item__group__name">{group.group_name}</div>
+              <div className="course-list__item__group__teacher">{group.group_teacher}</div>
+              <div className="course-list__item__group__enrolled">{group.enrolled}</div>
+              <div className="course-list__item__group__maximum">{group.enrollment_max}</div>
+              <div className="course-list__item__groups__group__schedule__container">
+              { group.schedule.map(s => 
+                <div className="course-list__item__groups__group__schedule">
+                  <div className="course-list__item__group__time--full">
+                    {s.time.split(' ').map(timeChunk => 
+                      <div className="course-list__item__group__time--chunk">{timeChunk}</div>
+                    )}
+                  </div>
+                  <div className="course-list__item__group__classroom--full">{s.classroom}</div>
+                </div>
+              )}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     ]
   }
 
   render() {
     const { title, courses } = this.props
-    console.log("courses", courses)
     return (
       <div className="course-table-section">
         <h2 className="course-table-section__header"> {title}</h2>
