@@ -1,7 +1,8 @@
-import { all, fork, call, put, takeEvery } from 'redux-saga/effects'
+import { all, call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
+import { SagaIterator } from 'redux-saga';
 
-function createRequest(request) {
+function createRequest(request: any) {
   return axios({
       method: request.method,
       url: process.env.REACT_APP_API_URL + request.url,
@@ -12,7 +13,7 @@ function createRequest(request) {
     })
 }
 
-function* callApi(action) {
+function* callApi(action: any) {
   yield put({ type: `${action.type}_REQUEST` })
   try {
     const result = yield call(createRequest, action.payload.request)
@@ -26,7 +27,7 @@ function* callApi(action) {
   }
 }
 
-function* executeFetch(action) {
+function* executeFetch(action: any) {
   yield put({ type: `${action.type}_REQUEST` })
   try {
     const result = yield call(action.payload.fetch.exec)
@@ -40,17 +41,17 @@ function* executeFetch(action) {
   }
 }
 
-function* handleRequest(action) {
-  yield takeEvery((action => action.payload && action.payload.request), callApi)
+function* handleRequest(action: any): SagaIterator {
+  yield takeEvery(((action: any) => action.payload && action.payload.request), callApi)
 }
 
-function* handleFetch(action) {
-  yield takeEvery((action => action.payload && action.payload.fetch), executeFetch)
+function* handleFetch(action: any): SagaIterator {
+  yield takeEvery(((action: any) => action.payload && action.payload.fetch), executeFetch)
 }
 
 export default function* root() {
   yield all([
-    fork(handleRequest),
-    fork(handleFetch)
+    takeEvery('*', handleRequest),
+    takeEvery('*', handleFetch)
   ])
 }

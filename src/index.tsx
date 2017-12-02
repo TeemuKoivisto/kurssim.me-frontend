@@ -1,11 +1,25 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import './index.css';
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import FrontPage from './pages/FrontPage'
+
+import { configureStore } from './store'
+
+import 'font-awesome/css/font-awesome.css'
+import './index.css'
+
+// import './types/redux-localstorage'
+
+const store = configureStore()
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <FrontPage />
+  </Provider>,
   document.getElementById('root') as HTMLElement
-);
-registerServiceWorker();
+)
+
+navigator.serviceWorker.getRegistrations().then(function(registrations: any) {
+  for (let registration of registrations) {
+    registration.unregister()
+}})

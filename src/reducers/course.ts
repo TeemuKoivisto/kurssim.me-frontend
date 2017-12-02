@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   courses: [],
 }
 
-function sortCourses(a, b) {
+function sortCourses(a: any, b: any) {
   const aname = a.name.toLowerCase(), bname = b.name.toLowerCase()
   if (aname < bname) {
     return -1
@@ -17,7 +17,7 @@ function sortCourses(a, b) {
   return 0
 }
 
-export default function (state = INITIAL_STATE, action) {
+export default function (state = INITIAL_STATE, action: any) {
   switch (action.type) {
     case COURSE_GET_ALL + '_SUCCESS':
       return { ...state, courses: action.payload.sort(sortCourses) }
