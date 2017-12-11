@@ -25,12 +25,12 @@ class CourseTable extends Component {
     const { courses } = this.props
     const { types } = this.state
     const groupedCourses = this.groupCoursesByType(courses)
+
     return (
       <div className="course-table">
-        <CourseTableSection title={types[0]} courses={groupedCourses[0]}/>
-        <CourseTableSection title={types[1]} courses={groupedCourses[1]}/>
-        <CourseTableSection title={types[2]} courses={groupedCourses[2]}/>
-        <CourseTableSection title={types[3]} courses={groupedCourses[3]}/>
+        {types.map((type, i) => (
+          <CourseTableSection title={type} courses={groupedCourses[i]} />
+        ))}
       </div>
     )
   }

@@ -16,12 +16,18 @@
   width: 100%;
 }
 
+.col--enrollment {
+  text-align: center;
+  width: 5%;
+  min-width: 50px;
+}
+
 .col--name {
   width: 70%;
 }
 
 .col--date {
-  width: 25%;
+  width: 20%;
 }
 
 .col--credits {
