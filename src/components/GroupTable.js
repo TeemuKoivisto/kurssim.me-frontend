@@ -1,6 +1,6 @@
 import React from 'react'
 
-import '@/components/GroupTable.scss'
+import './GroupTable.scss'
 
 const groupTimeClass = (index) => {
   switch(index) {
