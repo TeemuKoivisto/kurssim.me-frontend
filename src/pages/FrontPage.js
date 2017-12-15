@@ -158,13 +158,13 @@ class FrontPage extends Component {
     const { selectedCourses } = this.state
     return (
       <div className="front-page__container">
+        <h1 className="main-header">Kurssimme</h1>      
         <div className="front-page__top-container">
           { this.renderStudyFieldDropdown() }
           { this.renderPeriods() }
           { this.renderSearch() }
           <p style={{"margin": 0}}>Kursseja yhteensä: { selectedCourses.length }</p>
         </div>
-        <h1 className="main-header">Kurssimme</h1>
         <CourseTable courses={selectedCourses}/>
       </div>
     );

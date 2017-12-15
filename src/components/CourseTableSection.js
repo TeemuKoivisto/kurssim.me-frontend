@@ -135,7 +135,7 @@ class CourseTableSection extends Component {
         <div className="course-list__container">
           <div className="course-list__header">
             <span className="col--name">Nimi</span>
-            <span className="col--date">Aloituspäivä</span>
+            <span className="col--date">Alkaa</span>
             <span className="col--credits">Nopat</span>
             <span className="col--enrollment">Ilmo</span>
           </div>
