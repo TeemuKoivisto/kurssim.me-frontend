@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import CourseTableSection from './CourseTableSection'
 
-import './CourseTable.css'
+import './CourseTable.scss'
 
 class CourseTable extends Component {
 

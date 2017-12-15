@@ -100,7 +100,7 @@
 }
 
 .course-list__item__body {
-  background-color: #f5f5f5;
+  background-color: $color-course-background;
   display: flex;
   flex-direction: column;
   padding: 5px 10px;
@@ -139,9 +139,10 @@
 .course-list__item__groups__group {
   display: flex;
   flex-direction: row;
-}
-.course-list__item__groups__group:nth-child(2n) {
-  background-color: #cccccc;
+
+  &:nth-child(2n) {
+    background-color: $color-group-list-item;    
+  }
 }
 
 .course-list__item__groups__header {

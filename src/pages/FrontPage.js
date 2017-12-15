@@ -5,7 +5,7 @@ import { getCourses } from '../actions/course'
 
 import CourseTable from '../components/CourseTable'
 
-import './FrontPage.css'
+import './FrontPage.scss'
 
 class FrontPage extends Component {
 

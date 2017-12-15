@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import GroupTable from './GroubTable'
 import EnrollButton from './EnrollButton'
 
-import './CourseTable.css'
+import './CourseTable.scss'
 
 class CourseTableSection extends Component {
   state = {

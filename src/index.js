@@ -6,7 +6,7 @@ import FrontPage from './pages/FrontPage';
 import { configureStore } from './store'
 
 import 'font-awesome/css/font-awesome.css'
-import './index.css'
+import './index.scss'
 
 const store = configureStore()
 
