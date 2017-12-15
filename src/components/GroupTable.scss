@@ -43,82 +43,38 @@
   }
 }
 
-.group__name {
-  width: 15%;
+@mixin expand-on-tablet($width) {
   @media screen and (max-width: $break-tablet) {
     width: 100%;
   }
+  width: $width;
 }
 
-.group__teacher {
-  width: 25%;
-  @media screen and (max-width: $break-tablet) {
-    width: 100%;
+.group {
+  &__name {
+    @include expand-on-tablet(15%);
   }
-}
 
-.group__enrolled {
-  width: 7%;
-  @media screen and (max-width: $break-tablet) {
-    width: 100%;
+  &__teacher {
+    @include expand-on-tablet(25%);
   }
-}
 
-.group__maximum {
-  width: 7%;
-  @media screen and (max-width: $break-tablet) {
-    width: 100%;
+  &__enrolled {
+    @include expand-on-tablet(7%);
   }
-}
 
-.group__time {
-  width: 35%;
-  @media screen and (max-width: $break-tablet) {
-    width: 100%;
+  &__maximum {
+    @include expand-on-tablet(7%);
   }
-}
 
-.group__classroom {
-  width: 15%;
-}
-
-.group__time--full {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 70%;
-
-  @media screen and (max-width: $break-tablet) {
-    width: 100%;
+  &__schedule__header {
+    @include expand-on-tablet(46%);
   }
-}
 
-.group__time__date {
-  width: 50%;
-}
-
-.group__time__day {
-  width: 15%;
-}
-
-.group__time__time {
-  width: 35%;
-}
-
-.group__classroom--full {
-  width: 30%;
-  @media screen and (max-width: $break-tablet) {
-    width: 100%;
-  }
-}
-
-.group__schedule__container {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-
-  @media screen and (max-width: $break-tablet) {
-    width: 100%;
+  &__schedule__container {
+    display: flex;
+    flex-direction: column;
+    @include expand-on-tablet(46%);
   }
 }
 
@@ -126,8 +82,23 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100%;
+}
 
-  @media screen and (max-width: $break-tablet) {
-    flex-direction: column;
+.schedule {
+  &__date {
+    width: 40%;
+  }
+
+  &__day {
+    width: 7%;
+  }
+
+  &__time {
+    width: 25%;
+  }
+
+  &__classroom {
+    width: 28%;
   }
 }

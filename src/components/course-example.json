@@ -1,0 +1,198 @@
+{
+  "study_field": "tkt_kandi",
+  "tag": "TKT10005",
+  "name": "Tietokoneen toiminta",
+  "opintoni_url": "https://courses.helsinki.fi/fi/tkt10005/119284992",
+  "type": "Perusopinnot",
+  "format": "Luentokurssi",
+  "teachers": [
+    "Teemu Kerola"
+  ],
+  "id": 119284992,
+  "oodi_url": "https://weboodi.helsinki.fi/hy/opettaptied.jsp?OpetTap=119284992&Kieli=1",
+  "credits": 5,
+  "start_date": "31.10.2017",
+  "end_date": "15.12.2017",
+  "enrollment_start_date": "02.10.17",
+  "enrollment_end_date": "15.12.17",
+  "groups": [
+    {
+      "enrolled": 48,
+      "enrollment_max": 50,
+      "enrollment_start_date": "02.10.17",
+      "enrollment_end_date": "15.12.17",
+      "group_name": "Ryhmä 1",
+      "group_teacher": "Mohammad Bahmanpour",
+      "schedule": [
+        {
+          "date": "10.11.17",
+          "day": "pe",
+          "time": "10.15-12.00",
+          "classroom": "Exactum, D122"
+        },
+        {
+          "date": "24.11.-15.12.17",
+          "day": "pe",
+          "time": "10.15-12.00",
+          "classroom": "Exactum, D122"
+        }
+      ],
+      "group_languages": "suomi"
+    },
+    {
+      "enrolled": 27,
+      "enrollment_max": 40,
+      "enrollment_start_date": "02.10.17",
+      "enrollment_end_date": "15.12.17",
+      "group_name": "Ryhmä 2",
+      "group_teacher": "Teemu Kerola",
+      "schedule": [
+        {
+          "date": "07.11.17",
+          "day": "ti",
+          "time": "09.15-11.00",
+          "classroom": "Exactum, C222"
+        },
+        {
+          "date": "21.11.-12.12.17",
+          "day": "ti",
+          "time": "09.15-11.00",
+          "classroom": "Exactum, C222"
+        }
+      ],
+      "group_languages": "englanti"
+    },
+    {
+      "enrolled": 47,
+      "enrollment_max": 50,
+      "enrollment_start_date": "02.10.17",
+      "enrollment_end_date": "15.12.17",
+      "group_name": "Ryhmä 3",
+      "group_teacher": "Heikki Korhola",
+      "schedule": [
+        {
+          "date": "10.11.17",
+          "day": "pe",
+          "time": "14.15-16.00",
+          "classroom": "Exactum, D122"
+        },
+        {
+          "date": "24.11.-15.12.17",
+          "day": "pe",
+          "time": "14.15-16.00",
+          "classroom": "Exactum, D122"
+        }
+      ],
+      "group_languages": "suomi"
+    },
+    {
+      "enrolled": 48,
+      "enrollment_max": 50,
+      "enrollment_start_date": "02.10.17",
+      "enrollment_end_date": "15.12.17",
+      "group_name": "Ryhmä 4",
+      "group_teacher": "Heikki Korhola",
+      "schedule": [
+        {
+          "date": "09.11.17",
+          "day": "to",
+          "time": "12.15-14.00",
+          "classroom": "Physicum, sali E207"
+        },
+        {
+          "date": "23.11.-14.12.17",
+          "day": "to",
+          "time": "12.15-14.00",
+          "classroom": "Physicum, sali E207"
+        }
+      ],
+      "group_languages": "suomi"
+    },
+    {
+      "enrolled": 19,
+      "enrollment_max": 20,
+      "enrollment_start_date": "02.10.17",
+      "enrollment_end_date": "15.12.17",
+      "group_name": "Ryhmä 5",
+      "group_teacher": "Terho Uotila",
+      "schedule": [
+        {
+          "date": "07.11.17",
+          "day": "ti",
+          "time": "14.15-16.00",
+          "classroom": "Physicum, sali E206"
+        },
+        {
+          "date": "21.11.-12.12.17",
+          "day": "ti",
+          "time": "14.15-16.00",
+          "classroom": "Physicum, sali E206"
+        }
+      ],
+      "group_languages": "suomi"
+    },
+    {
+      "enrolled": 24,
+      "enrollment_max": 50,
+      "enrollment_start_date": "02.10.17",
+      "enrollment_end_date": "15.12.17",
+      "group_name": "Ryhmä 6",
+      "group_teacher": "Heikki Korhola",
+      "schedule": [
+        {
+          "date": "08.11.17",
+          "day": "ke",
+          "time": "16.15-18.00",
+          "classroom": "Physicum, sali E207"
+        },
+        {
+          "date": "22.11.-13.12.17",
+          "day": "ke",
+          "time": "16.15-18.00",
+          "classroom": "Physicum, sali E207"
+        }
+      ],
+      "group_languages": "suomi"
+    },
+    {
+      "enrolled": 44,
+      "enrollment_max": 50,
+      "enrollment_start_date": "02.10.17",
+      "enrollment_end_date": "15.12.17",
+      "group_name": "Ryhmä 7",
+      "group_teacher": "Terho Uotila",
+      "schedule": [
+        {
+          "date": "09.11.17",
+          "day": "to",
+          "time": "16.15-18.00",
+          "classroom": "Exactum, D123"
+        },
+        {
+          "date": "23.11.-14.12.17",
+          "day": "to",
+          "time": "16.15-18.00",
+          "classroom": "Exactum, D123"
+        }
+      ],
+      "group_languages": "suomi"
+    },
+    {
+      "enrolled": 35,
+      "enrollment_max": 999,
+      "enrollment_start_date": "02.10.17",
+      "enrollment_end_date": "14.12.17",
+      "group_name": "Ryhmä 99 (Jono - jos ryhmät ovat täynnä tai ajat eivät sovi)",
+      "group_teacher": "",
+      "schedule": [
+        {
+          "date": "31.10.-15.12.17",
+          "day": "",
+          "time": "",
+          "classroom": ""
+        }
+      ],
+      "group_languages": ""
+    }
+  ]
+}
