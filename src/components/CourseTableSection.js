@@ -54,7 +54,7 @@ class CourseTableSection extends Component {
     // const visibilityClass = this.state.shownCourseDetail[course.id] ? 'slide-in' : 'slide-out'
     // {"enrolled": 8, "enrollment_max": 99, "enrollment_start_date": "14.08.17", "enrollment_end_date": "20.10.17", "group_name": "Ryhm\u00e4 99 (Jono - jos ryhm\u00e4t ovat t\u00e4ynn\u00e4 tai ajat eiv\u00e4t sovi)", "group_teacher": "", "schedule": [{"time": "06.09.17", "classroom": ""}], "group_languages": ""}]}
     return (
-      <div key={course.id} className="course-list__item__container">
+      <div key={id} className="course-list__item__container">
         <div
           className="course-list__item"
           onClick={this.handleShowDetailClick.bind(this, course)}
@@ -104,7 +104,7 @@ class CourseTableSection extends Component {
             </div>
           </div>
 
-          {groups.length !== 0 && open && (
+          {groups.length !== 0 && (
             <GroupTable groups={groups} />
           )}
 

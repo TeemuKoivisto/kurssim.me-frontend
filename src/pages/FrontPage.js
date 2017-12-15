@@ -10,7 +10,8 @@ import './FrontPage.css'
 class FrontPage extends Component {
 
   state = {
-    renderedCourses: [],
+    selectedCourses: [],
+    searchInput: "",
     selected: {
       study_field: {
         id: "all",
@@ -40,7 +41,7 @@ class FrontPage extends Component {
     }],
   }
 
-  setRenderedCourses(props, fieldId) {
+  setSelectedCourses(props, fieldId) {
     const { courses } = props
     if (fieldId === "all") {
       // Filter duplicate courses since some courses belong to multiple study-fields
@@ -53,14 +54,20 @@ class FrontPage extends Component {
         }
       })
       this.setState({
-        renderedCourses: filteredCourses,
+        selectedCourses: filteredCourses,
       })
     } else {
       const filteredCourses = courses.filter(c => c.study_field === fieldId)
       this.setState({
-        renderedCourses: filteredCourses
+        selectedCourses: filteredCourses,
       })
     }
+  }
+
+  filterCourses(input, courses) {
+    return courses.filter(c => c.name.toLowerCase().includes(input) || c.tag.toLowerCase().includes(input)
+      || c.type.toLowerCase().includes(input) || c.format.toLowerCase().includes(input) || c.start_date.toLowerCase().includes(input)
+      || c.end_date.toLowerCase().includes(input) || c.credits.toString().includes(input))
   }
 
   componentDidMount() {
@@ -68,7 +75,7 @@ class FrontPage extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    this.setRenderedCourses(newProps, this.state.selected.study_field.id)
+    this.setSelectedCourses(newProps, this.state.selected.study_field.id)
   }
 
   handleClick(type, e) {
@@ -88,15 +95,21 @@ class FrontPage extends Component {
       const stateChange = Object.assign({}, this.state)
       stateChange.selected.study_field = e.target.value
       this.setState(stateChange)
-      this.setRenderedCourses(this.props, this.state.selected.study_field)
+      this.setSelectedCourses(this.props, this.state.selected.study_field)
+    } else if (type === "search") {
+      const searched = e.target.value.toLowerCase()
+      // const filteredCourses = this.filterCourses(searched.toLowerCase(), this.state.selectedCourses)
+      this.setState({
+        searchInput: searched,
+      })
     }
   }
 
-  renderSearch() {
+  renderStudyFieldDropdown() {
     const { study_fields } = this.state
     const { study_field } = this.state.selected
     return (
-      <div className="course-search--container">
+      <div className="studyfield__container">
         <div>
           <select onChange={this.handleChange.bind(this, "selectStudyField")}
             value={study_field.name}
@@ -121,19 +134,38 @@ class FrontPage extends Component {
     )
   }
 
-  render() {
-    const { renderedCourses } = this.state
+  renderSelectTableType() {
     return (
-      <div className="front-page--container">
-        { this.renderSearch() }
-        { this.renderPeriods() }
-        <div>
-          <button onClick={this.handleClick.bind(this, "selectList")}>Lista</button>
-          <button onClick={this.handleClick.bind(this, "selectTable")}>Taulukko</button>
+      <div>
+        <button onClick={this.handleClick.bind(this, "selectList")}>Lista</button>
+        <button onClick={this.handleClick.bind(this, "selectTable")}>Taulukko</button>
+      </div>
+    )
+  }
+
+  renderSearch() {
+    const { searchInput } = this.state
+    return (
+      <div className="search__form-group">
+        <h3>Hae</h3>
+        <input className="search__form-group__input" onChange={this.handleChange.bind(this, "search")}
+          value={searchInput}/>
+      </div>
+    )
+  }
+
+  render() {
+    const { selectedCourses } = this.state
+    return (
+      <div className="front-page__container">
+        <div className="front-page__top-container">
+          { this.renderStudyFieldDropdown() }
+          { this.renderPeriods() }
+          { this.renderSearch() }
+          <p style={{"margin": 0}}>Kursseja yhteensä: { selectedCourses.length }</p>
         </div>
-        <p>Kursseja yhteensä: { renderedCourses.length }</p>
         <h1 className="main-header">Kurssimme</h1>
-        <CourseTable courses={renderedCourses}/>
+        <CourseTable courses={selectedCourses}/>
       </div>
     );
   }

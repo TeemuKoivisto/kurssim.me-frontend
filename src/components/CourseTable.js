@@ -29,7 +29,7 @@ class CourseTable extends Component {
     return (
       <div className="course-table">
         {types.map((type, i) => (
-          <CourseTableSection title={type} courses={groupedCourses[i]} />
+          <CourseTableSection title={type} courses={groupedCourses[i]} key={i}/>
         ))}
       </div>
     )
