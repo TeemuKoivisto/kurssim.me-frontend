@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import GroupTable from './GroubTable'
+import GroupTable from './GroupTable'
 import EnrollButton from './EnrollButton'
 
 import './CourseTable.scss'

@@ -1,0 +1,133 @@
+.group-table__header {
+  display: flex;
+  flex-direction: row;
+
+  @media screen and (max-width: $break-tablet) {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.group-table__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  
+  &:nth-child(2n) {
+    background-color: $color-group-list-item;    
+  }
+}
+
+.group-table__item__inline-header {
+  display: flex;
+  flex-direction: column;
+  display: none;
+  visibility: hidden;
+
+  @media screen and (max-width: $break-tablet) {
+    display: block;
+    visibility: visible;
+    width: 30%;
+  }
+}
+
+.group-table__item__body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  @media screen and (max-width: $break-tablet) {
+    flex-direction: column;
+    width: 70%;
+  }
+}
+
+.group__name {
+  width: 15%;
+  @media screen and (max-width: $break-tablet) {
+    width: 100%;
+  }
+}
+
+.group__teacher {
+  width: 25%;
+  @media screen and (max-width: $break-tablet) {
+    width: 100%;
+  }
+}
+
+.group__enrolled {
+  width: 7%;
+  @media screen and (max-width: $break-tablet) {
+    width: 100%;
+  }
+}
+
+.group__maximum {
+  width: 7%;
+  @media screen and (max-width: $break-tablet) {
+    width: 100%;
+  }
+}
+
+.group__time {
+  width: 35%;
+  @media screen and (max-width: $break-tablet) {
+    width: 100%;
+  }
+}
+
+.group__classroom {
+  width: 15%;
+}
+
+.group__time--full {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 70%;
+
+  @media screen and (max-width: $break-tablet) {
+    width: 100%;
+  }
+}
+
+.group__time__date {
+  width: 50%;
+}
+
+.group__time__day {
+  width: 15%;
+}
+
+.group__time__time {
+  width: 35%;
+}
+
+.group__classroom--full {
+  width: 30%;
+  @media screen and (max-width: $break-tablet) {
+    width: 100%;
+  }
+}
+
+.group__schedule__container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
+  @media screen and (max-width: $break-tablet) {
+    width: 100%;
+  }
+}
+
+.group__schedule {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @media screen and (max-width: $break-tablet) {
+    flex-direction: column;
+  }
+}

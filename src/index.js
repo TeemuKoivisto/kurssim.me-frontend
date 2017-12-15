@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import FrontPage from './pages/FrontPage';
+import FrontPage from '@/pages/FrontPage';
 
-import { configureStore } from './store'
+import { configureStore } from '@/store'
 
 import 'font-awesome/css/font-awesome.css'
-import './index.scss'
+import '@/index.scss'
 
 const store = configureStore()
 
