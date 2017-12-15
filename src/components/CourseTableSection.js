@@ -82,6 +82,9 @@ class CourseTableSection extends Component {
               <div className="course-list__item__course-page">
                 {'Kurssisivu: '}
               </div>
+              <div className="course-list__item__weboodi">
+                {'Weboodi: '}
+              </div>
               <div className="course-list__item__date">{'Ajankohta: '}</div>
               <div className="course-list__item__enrollment">{'Ilmo: '}</div>
               <div className="course-list__item__teachers">{'Opettajat: '}</div>
@@ -96,6 +99,15 @@ class CourseTableSection extends Component {
                   rel="noopener noreferrer"
                 >
                   {opintoni_url}
+                </a>
+              </div>
+              <div className="course-list__item__weboodi">
+                <a
+                  href={oodi_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {oodi_url}
                 </a>
               </div>
               <div className="">{date}</div>

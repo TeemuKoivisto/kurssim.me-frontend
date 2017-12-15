@@ -67,6 +67,13 @@
 
 .course-list__item__course-page {
   overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.course-list__item__weboodi {
+  overflow-x: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
@@ -173,8 +180,16 @@
   width: 70%;
 }
 
-.course-list__item__group__time--chunk {
-  width: 33%;
+.course-list__item__group__time__date {
+  width: 50%;
+}
+
+.course-list__item__group__time__day {
+  width: 15%;
+}
+
+.course-list__item__group__time__time {
+  width: 35%;
 }
 
 .course-list__item__group__classroom--full {

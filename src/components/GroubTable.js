@@ -1,5 +1,18 @@
 import React from 'react'
 
+const groupTimeClass = (index) => {
+  switch(index) {
+    case 0:
+      return 'date'
+    case 1:
+      return 'day'
+    case 2:
+      return 'time'
+    default:
+      return ''
+  }
+}
+
 const GroupTable = ({ groups }) => (
   <div className="course-list__item__group">
     <div className="course-list__item__groups__header">
@@ -29,7 +42,7 @@ const GroupTable = ({ groups }) => (
                 {s.time.split(' ').map((timeChunk, i) => (
                   <div
                     key={i}
-                    className="course-list__item__group__time--chunk"
+                    className={`course-list__item__group__time__${groupTimeClass(i)}`}
                   >
                     {timeChunk}
                   </div>
