@@ -11,7 +11,7 @@ export const configureStore = () => {
   const createStoreWithMiddleware = applyMiddleware(sagaMiddleware)(createStore)
 
   const createPersistentStore = compose(
-    persistState(['course'])
+    // persistState(['course'])
   )(createStoreWithMiddleware)
 
   const store = createPersistentStore(
