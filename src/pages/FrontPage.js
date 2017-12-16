@@ -54,11 +54,11 @@ class FrontPage extends Component {
         }
       })
       this.props.setSelectedCourses(filteredCourses)
-      this.props.setFilteredCourses(filteredCourses)
+      this.props.setFilteredCourses(this.filterCourses(this.state.searchInput, filteredCourses))
     } else {
       const filteredCourses = courses.filter(c => c.study_field === fieldId)
       this.props.setSelectedCourses(filteredCourses)
-      this.props.setFilteredCourses(filteredCourses)
+      this.props.setFilteredCourses(this.filterCourses(this.state.searchInput, filteredCourses))
     }
   }
 
