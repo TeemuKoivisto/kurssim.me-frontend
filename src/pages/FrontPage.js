@@ -41,7 +41,6 @@ class FrontPage extends Component {
   }
 
   setSelectedCourses(props, fieldId) {
-    console.log('setting courses')
     const { courses } = props
     if (fieldId === "all") {
       // Filter duplicate courses since some courses belong to multiple study-fields
@@ -54,25 +53,25 @@ class FrontPage extends Component {
         }
       })
       this.props.setSelectedCourses(filteredCourses)
-      this.props.setFilteredCourses(this.filterCourses(this.state.searchInput, filteredCourses))
+      this.props.setFilteredCourses(this.filterCourseIds(this.state.searchInput, filteredCourses))
     } else {
       const filteredCourses = courses.filter(c => c.study_field === fieldId)
       this.props.setSelectedCourses(filteredCourses)
-      this.props.setFilteredCourses(this.filterCourses(this.state.searchInput, filteredCourses))
+      this.props.setFilteredCourses(this.filterCourseIds(this.state.searchInput, filteredCourses))
     }
   }
 
-  filterCourses(input, courses) {
+  filterCourseIds(input, courses) {
     return courses.filter(c => c.name.toLowerCase().includes(input) || c.tag.toLowerCase().includes(input)
       || c.type.toLowerCase().includes(input) || c.format.toLowerCase().includes(input) || c.start_date.toLowerCase().includes(input)
-      || c.end_date.toLowerCase().includes(input) || c.credits.toString().includes(input))
+      || c.end_date.toLowerCase().includes(input) || c.credits.toString().includes(input)).map(c => c.id)
   }
 
   componentDidMount() {
     this.props.getCourses()
   }
 
-  componentWillReceiveProps(newProps, oldProps) {
+  componentWillReceiveProps(newProps) {
     if (newProps.courses !== this.props.courses) {
       this.setSelectedCourses(newProps, this.state.selected.study_field.id)
       this.setState({
@@ -101,11 +100,10 @@ class FrontPage extends Component {
       this.setSelectedCourses(this.props, this.state.selected.study_field)
     } else if (type === "search") {
       const searched = e.target.value.toLowerCase()
-      const filteredCourses = this.filterCourses(searched, this.props.selectedCourses)
       this.setState({
         searchInput: searched,
       })
-      this.props.setFilteredCourses(filteredCourses)      
+      this.props.setFilteredCourses(this.filterCourseIds(searched, this.props.selectedCourses))
     }
   }
 
@@ -159,7 +157,7 @@ class FrontPage extends Component {
   }
 
   render() {
-    const { selectedCourses, filteredCourses } = this.props
+    const { selectedCourses, shownCourseIds } = this.props
     return (
       <div className="front-page__container">
         <h1 className="main-header">Kurssimme</h1>      
@@ -167,7 +165,7 @@ class FrontPage extends Component {
           { this.renderStudyFieldDropdown() }
           { this.renderPeriods() }
           { this.renderSearch() }
-          <p style={{"margin": 0}}>Kursseja valittu/yhteensä: { filteredCourses.length + '/' + selectedCourses.length }</p>
+          <p style={{"margin": 0}}>Kursseja valittu/yhteensä: { shownCourseIds.length + '/' + selectedCourses.length }</p>
         </div>
         <CourseTable />
       </div>
@@ -178,7 +176,7 @@ class FrontPage extends Component {
 const mapStateToProps = (state) => ({
   courses: state.course.courses,
   selectedCourses: state.course.selectedCourses,
-  filteredCourses: state.course.filteredCourses  
+  shownCourseIds: state.course.shownCourseIds
 })
 
 const mapDispatchToProps = (dispatch) => ({

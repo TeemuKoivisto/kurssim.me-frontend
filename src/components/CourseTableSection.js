@@ -26,7 +26,7 @@ class CourseTableSection extends Component {
     return end ? `${start} - ${end}` : `${start} -`
   }
 
-  renderCourse(course) {
+  renderCourse(course, showCourse) {
     const {
       id,
       name,
@@ -48,13 +48,14 @@ class CourseTableSection extends Component {
       enrollment_end_date
     )
 
+    const courseVisibility = showCourse ? '' : 'hidden'
     const visibilityClass = this.state.shownCourseDetail[course.id]
       ? ''
       : 'hidden'
     // const visibilityClass = this.state.shownCourseDetail[course.id] ? 'slide-in' : 'slide-out'
     // {"enrolled": 8, "enrollment_max": 99, "enrollment_start_date": "14.08.17", "enrollment_end_date": "20.10.17", "group_name": "Ryhm\u00e4 99 (Jono - jos ryhm\u00e4t ovat t\u00e4ynn\u00e4 tai ajat eiv\u00e4t sovi)", "group_teacher": "", "schedule": [{"time": "06.09.17", "classroom": ""}], "group_languages": ""}]}
     return (
-      <div key={id} className="course-list__item__container">
+      <div key={id} className={`course-list__item__container ${courseVisibility}`}>
         <div
           className="course-list__item"
           onClick={this.handleShowDetailClick.bind(this, course)}
@@ -127,7 +128,7 @@ class CourseTableSection extends Component {
   }
 
   render() {
-    const { title, courses } = this.props
+    const { title, courses, shownCourseIds } = this.props
 
     return (
       <div className="course-table-section">
@@ -140,7 +141,7 @@ class CourseTableSection extends Component {
             <span className="col--enrollment">Ilmo</span>
           </div>
           <ul className="course-list">
-            {courses.map(course => this.renderCourse(course))}
+            {courses.map(course => this.renderCourse(course, shownCourseIds.includes(course.id)))}
           </ul>
         </div>
       </div>

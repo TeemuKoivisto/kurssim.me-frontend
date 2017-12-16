@@ -24,14 +24,14 @@ class CourseTable extends Component {
   }
 
   render() {
-    const { filteredCourses } = this.props
+    const { selectedCourses, shownCourseIds } = this.props
     const { types } = this.state
-    const groupedCourses = this.groupCoursesByType(filteredCourses)
+    const groupedCourses = this.groupCoursesByType(selectedCourses)
 
     return (
       <div className="course-table">
         {types.map((type, i) => (
-          <CourseTableSection title={type} courses={groupedCourses[i]} key={i}/>
+          <CourseTableSection key={i} title={type} courses={groupedCourses[i]} shownCourseIds={shownCourseIds}/>
         ))}
       </div>
     )
@@ -40,7 +40,7 @@ class CourseTable extends Component {
 
 const mapStateToProps = (state) => ({
   selectedCourses: state.course.selectedCourses,
-  filteredCourses: state.course.filteredCourses
+  shownCourseIds: state.course.shownCourseIds
 })
 
 const mapDispatchToProps = (dispatch) => ({

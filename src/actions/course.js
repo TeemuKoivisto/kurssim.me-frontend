@@ -1,6 +1,6 @@
 export const COURSE_GET_ALL = 'COURSE_GET_ALL'
 export const COURSE_SET_SELECTED = 'COURSE_SET_SELECTED'
-export const COURSE_SET_FILTERED = 'COURSE_SET_FILTERED'
+export const COURSE_SET_SHOWN = 'COURSE_SET_SHOWN'
 
 // export const getCourses = () => ({
 //   type: COURSE_GET_ALL,
@@ -39,6 +39,6 @@ export const setSelectedCourses = (courses) => ({
 })
 
 export const setFilteredCourses = (courses) => ({
-  type: COURSE_SET_FILTERED,
+  type: COURSE_SET_SHOWN,
   payload: courses,
 })
