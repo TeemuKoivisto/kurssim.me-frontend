@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { getCourses } from '../actions/course'
+import { getCourses, setSelectedCourses, setFilteredCourses } from '../actions/course'
 
 import CourseTable from '../components/CourseTable'
 
@@ -10,7 +10,6 @@ import './FrontPage.scss'
 class FrontPage extends Component {
 
   state = {
-    selectedCourses: [],
     searchInput: "",
     selected: {
       study_field: {
@@ -42,6 +41,7 @@ class FrontPage extends Component {
   }
 
   setSelectedCourses(props, fieldId) {
+    console.log('setting courses')
     const { courses } = props
     if (fieldId === "all") {
       // Filter duplicate courses since some courses belong to multiple study-fields
@@ -53,14 +53,12 @@ class FrontPage extends Component {
           uniqueIds.push(c.id)
         }
       })
-      this.setState({
-        selectedCourses: filteredCourses,
-      })
+      this.props.setSelectedCourses(filteredCourses)
+      this.props.setFilteredCourses(filteredCourses)
     } else {
       const filteredCourses = courses.filter(c => c.study_field === fieldId)
-      this.setState({
-        selectedCourses: filteredCourses,
-      })
+      this.props.setSelectedCourses(filteredCourses)
+      this.props.setFilteredCourses(filteredCourses)
     }
   }
 
@@ -74,8 +72,13 @@ class FrontPage extends Component {
     this.props.getCourses()
   }
 
-  componentWillReceiveProps(newProps) {
-    this.setSelectedCourses(newProps, this.state.selected.study_field.id)
+  componentWillReceiveProps(newProps, oldProps) {
+    if (newProps.courses !== this.props.courses) {
+      this.setSelectedCourses(newProps, this.state.selected.study_field.id)
+      this.setState({
+        searchInput: "",
+      })
+    }
   }
 
   handleClick(type, e) {
@@ -98,10 +101,11 @@ class FrontPage extends Component {
       this.setSelectedCourses(this.props, this.state.selected.study_field)
     } else if (type === "search") {
       const searched = e.target.value.toLowerCase()
-      // const filteredCourses = this.filterCourses(searched.toLowerCase(), this.state.selectedCourses)
+      const filteredCourses = this.filterCourses(searched, this.props.selectedCourses)
       this.setState({
         searchInput: searched,
       })
+      this.props.setFilteredCourses(filteredCourses)      
     }
   }
 
@@ -155,7 +159,7 @@ class FrontPage extends Component {
   }
 
   render() {
-    const { selectedCourses } = this.state
+    const { selectedCourses, filteredCourses } = this.props
     return (
       <div className="front-page__container">
         <h1 className="main-header">Kurssimme</h1>      
@@ -163,21 +167,29 @@ class FrontPage extends Component {
           { this.renderStudyFieldDropdown() }
           { this.renderPeriods() }
           { this.renderSearch() }
-          <p style={{"margin": 0}}>Kursseja yhteensä: { selectedCourses.length }</p>
+          <p style={{"margin": 0}}>Kursseja valittu/yhteensä: { filteredCourses.length + '/' + selectedCourses.length }</p>
         </div>
-        <CourseTable courses={selectedCourses}/>
+        <CourseTable />
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = (state) => ({
-  courses: state.course.courses
+  courses: state.course.courses,
+  selectedCourses: state.course.selectedCourses,
+  filteredCourses: state.course.filteredCourses  
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getCourses() {
     dispatch(getCourses())
+  },
+  setSelectedCourses(courses) {
+    dispatch(setSelectedCourses(courses))
+  },
+  setFilteredCourses(courses) {
+    dispatch(setFilteredCourses(courses))
   }
 })
 

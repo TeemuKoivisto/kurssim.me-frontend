@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 import CourseTableSection from './CourseTableSection'
 
 import './CourseTable.scss'
@@ -22,9 +24,9 @@ class CourseTable extends Component {
   }
 
   render() {
-    const { courses } = this.props
+    const { filteredCourses } = this.props
     const { types } = this.state
-    const groupedCourses = this.groupCoursesByType(courses)
+    const groupedCourses = this.groupCoursesByType(filteredCourses)
 
     return (
       <div className="course-table">
@@ -36,4 +38,12 @@ class CourseTable extends Component {
   }
 }
 
-export default CourseTable
+const mapStateToProps = (state) => ({
+  selectedCourses: state.course.selectedCourses,
+  filteredCourses: state.course.filteredCourses
+})
+
+const mapDispatchToProps = (dispatch) => ({
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CourseTable)
