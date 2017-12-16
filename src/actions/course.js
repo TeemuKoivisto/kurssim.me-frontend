@@ -38,7 +38,7 @@ export const setSelectedCourses = (courses) => ({
   payload: courses,
 })
 
-export const setFilteredCourses = (courses) => ({
+export const setShownCourses = (courses) => ({
   type: COURSE_SET_SHOWN,
   payload: courses,
 })

@@ -139,14 +139,6 @@
   font-weight: bold;
 }
 
-.slide-in {
-  transform: translateY(0);
-}
-
-.slide-out {
-  transform: translateY(-220px);
-}
-
 .course__enrollment {
 }
 
@@ -159,12 +151,11 @@
   }
 }
 
-.course__teacher__list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+
+.slide-in {
+  transform: translateY(0);
 }
 
-.course__teacher__item {
-  margin: 0;
+.slide-out {
+  transform: translateY(-220px);
 }

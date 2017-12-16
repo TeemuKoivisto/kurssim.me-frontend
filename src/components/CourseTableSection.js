@@ -112,7 +112,7 @@ class CourseTableSection extends Component {
               <div className="">{date}</div>
               <div className="">{enrollmentDate}</div>
               <div className="course-teachers">{teachers.map(t =>
-                <span>{t}</span>)}
+                <span key={t}>{t}</span>)}
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import persistState from 'redux-localstorage'
+// import persistState from 'redux-localstorage'
 
 import rootReducer from './reducers'
 import rootSaga from './sagas'

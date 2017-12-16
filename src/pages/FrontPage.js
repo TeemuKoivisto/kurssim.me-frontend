@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { getCourses, setSelectedCourses, setFilteredCourses } from '../actions/course'
+import { getCourses, setSelectedCourses, setShownCourses } from '../actions/course'
 
 import CourseTable from '../components/CourseTable'
 
@@ -53,18 +53,18 @@ class FrontPage extends Component {
         }
       })
       this.props.setSelectedCourses(filteredCourses)
-      this.props.setFilteredCourses(this.filterCourseIds(this.state.searchInput, filteredCourses))
+      this.props.setShownCourses(this.filterCourseIds(this.state.searchInput, filteredCourses))
     } else {
       const filteredCourses = courses.filter(c => c.study_field === fieldId)
       this.props.setSelectedCourses(filteredCourses)
-      this.props.setFilteredCourses(this.filterCourseIds(this.state.searchInput, filteredCourses))
+      this.props.setShownCourses(this.filterCourseIds(this.state.searchInput, filteredCourses))
     }
   }
 
   filterCourseIds(input, courses) {
     const includes = (text) => text.toLowerCase().includes(input)
     const listIncludes = (list) => list.some(current => includes(current))
-    
+
     return courses.filter(c => includes(c.name) || includes(c.tag) || includes(c.type) || includes(c.format)
       || includes(c.start_date) || includes(c.end_date) || includes(c.credits.toString())
       || listIncludes(c.teachers)).map(c => c.id)
@@ -108,7 +108,7 @@ class FrontPage extends Component {
       this.setState({
         searchInput: searched,
       })
-      this.props.setFilteredCourses(this.filterCourseIds(searched, this.props.selectedCourses))
+      this.props.setShownCourses(this.filterCourseIds(searched, this.props.selectedCourses))
     }
   }
 
@@ -194,8 +194,8 @@ const mapDispatchToProps = (dispatch) => ({
   setSelectedCourses(courses) {
     dispatch(setSelectedCourses(courses))
   },
-  setFilteredCourses(courses) {
-    dispatch(setFilteredCourses(courses))
+  setShownCourses(courses) {
+    dispatch(setShownCourses(courses))
   }
 })
 
