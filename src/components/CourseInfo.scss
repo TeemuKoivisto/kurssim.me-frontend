@@ -1,0 +1,36 @@
+.course-info {
+  display: flex;
+}
+
+.course__key {
+  font-weight: bold;
+}
+
+.col--key {
+  width: 30%;
+}
+
+.col--value {
+  width: 70%;
+}
+
+.course__course-page {
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.course__weboodi {
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.course-teachers {
+  > span {
+    margin: 0 10px 0 0;
+    &:last-child {
+      margin: 0;
+    }
+  }
+}

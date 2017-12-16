@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import CourseInfo from './CourseInfo'
 import GroupTable from './GroupTable'
 import EnrollButton from './EnrollButton'
 
@@ -58,9 +59,9 @@ class CourseTableSection extends Component {
           className="course__title-box"
           onClick={this.handleShowDetailClick.bind(this, course)}
         >
-          <div className="course__name col--name">
+          <div className="col--name">
             <h4 className="course__header">
-              <span className="course__header-text">{name}</span>
+              <span className="course__header__text">{name}</span>
             </h4>
           </div>
           <div className="col--date">{start_date}</div>
@@ -75,47 +76,9 @@ class CourseTableSection extends Component {
         </div>
 
         <div className={`course__body ${courseDetailVisibility}`}>
-          <div className="course__info">
-            <div className="course__key col--key">
-              <div className="course__format">{'Tyyppi: '}</div>
-              <div className="course__course-page">
-                {'Kurssisivu: '}
-              </div>
-              <div className="course__weboodi">
-                {'Weboodi: '}
-              </div>
-              <div className="course__date">{'Ajankohta: '}</div>
-              <div className="course__enrollment">{'Ilmo: '}</div>
-              <div className="course__teachers">{'Opettajat: '}</div>
-            </div>
 
-            <div className="course__value col--value">
-              <div className="">{format}</div>
-              <div className="course__course-page">
-                <a
-                  href={opintoni_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {opintoni_url}
-                </a>
-              </div>
-              <div className="course__weboodi">
-                <a
-                  href={oodi_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {oodi_url}
-                </a>
-              </div>
-              <div className="">{date}</div>
-              <div className="">{enrollmentDate}</div>
-              <div className="course-teachers">{teachers.map(t =>
-                <span key={t}>{t}</span>)}
-              </div>
-            </div>
-          </div>
+          <CourseInfo format={format} opintoni_url={opintoni_url} oodi_url={oodi_url}
+            date={date} enrollmentDate={enrollmentDate} teachers={teachers}/>
 
           {groups.length !== 0 && (
             <GroupTable groups={groups} />

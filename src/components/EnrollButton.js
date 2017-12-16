@@ -1,10 +1,10 @@
 import React from 'react'
 
 const EnrollButton = ({ oodi_url }) => (
-  <div className="course-list__item__button-row">
-    <div className="course-list__item__button">
+  <div className="course__btn__container">
+    <div className="course__btn">
       <a
-        className="course-list__item__button-link"
+        className="course__btn__link"
         target="_blank"
         rel="noopener noreferrer"
         href={oodi_url}
