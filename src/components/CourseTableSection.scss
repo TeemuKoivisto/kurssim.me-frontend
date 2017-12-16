@@ -1,0 +1,159 @@
+.course-table-section {
+
+}
+
+.course-table-section__header {
+  margin: 30px 0 0 0;
+}
+
+.course-list__container {
+  text-align: left;
+}
+
+.course-list__header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.col--enrollment {
+  text-align: center;
+  width: 5%;
+  min-width: 50px;
+}
+
+.col--name {
+  width: 70%;
+}
+
+.col--date {
+  width: 20%;
+}
+
+.col--credits {
+  text-align: center;
+  width: 5%;
+  min-width: 50px;
+}
+
+.col--key {
+  width: 30%;
+}
+
+.col--value {
+  width: 70%;
+}
+
+.course-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.course-list__item__container {
+  border: 1px solid #bbbbbb;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.course-list__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  animation-name: to-max-width;
+  animation-duration: 2s;
+  padding: 5px;
+}
+
+.course-list__item__course-page {
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.course-list__item__weboodi {
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.course-list__item__header {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+}
+
+.course-list__item__header__link {
+  margin: 0.2em 6px 0 0;
+  text-decoration: none;
+}
+
+.course-list__item__date {
+}
+
+.course-list__item__credits {
+}
+
+.course-list__item__header-text {
+  margin: 0 4px 0 2px;
+  word-break: break-word;
+}
+
+.course-list__item__body {
+  background-color: $color-course-background;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+  /* transform: translateY(-220px);
+  transition: transform 400ms ease-in; */
+}
+
+.course-list__item__info {
+  display: flex;
+}
+
+.course-list__item__key {
+  font-weight: bold;
+}
+
+.course-list__item__button-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.course-list__item__button {
+  /* margin: 2px 0; */
+  text-decoration: none;
+  padding: 5px 10px;
+  background-color: #fff;
+  border: 1px solid #bbbbbb;
+  border-radius: 5px;
+}
+
+.course-list__item__button-link {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+.slide-in {
+  transform: translateY(0);
+}
+
+.slide-out {
+  transform: translateY(-220px);
+}
+
+.course-list__item__enrollment {
+}
+
+.course-list__item__teacher__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.course-list__item__teacher__item {
+  margin: 0;
+}

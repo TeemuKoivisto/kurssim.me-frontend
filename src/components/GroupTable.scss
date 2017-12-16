@@ -1,45 +1,47 @@
-.group-table__header {
-  display: flex;
-  flex-direction: row;
-
-  @media screen and (max-width: $break-tablet) {
-    display: none;
-    visibility: hidden;
-  }
-}
-
-.group-table__item {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
+.group-table {
+  &__header {
+    display: flex;
+    flex-direction: row;
   
-  &:nth-child(2n) {
-    background-color: $color-group-list-item;    
+    @media screen and (max-width: $break-tablet) {
+      display: none;
+      visibility: hidden;
+    }
   }
-}
 
-.group-table__item__inline-header {
-  display: flex;
-  flex-direction: column;
-  display: none;
-  visibility: hidden;
+  &__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    
+    &:nth-child(2n) {
+      background-color: $color-group-list-item;    
+    }
 
-  @media screen and (max-width: $break-tablet) {
-    display: block;
-    visibility: visible;
-    width: 30%;
-  }
-}
+    &__inline-header {
+      display: flex;
+      flex-direction: column;
+      display: none;
+      visibility: hidden;
+    
+      @media screen and (max-width: $break-tablet) {
+        display: block;
+        visibility: visible;
+        width: 30%;
+      }
+    }
 
-.group-table__item__body {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-
-  @media screen and (max-width: $break-tablet) {
-    flex-direction: column;
-    width: 70%;
+    &__body {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    
+      @media screen and (max-width: $break-tablet) {
+        flex-direction: column;
+        width: 70%;
+      }
+    }
   }
 }
 
@@ -71,18 +73,50 @@
     @include expand-on-tablet(46%);
   }
 
-  &__schedule__container {
+  &__schedule__wrapper {
     display: flex;
     flex-direction: column;
     @include expand-on-tablet(46%);
   }
-}
 
-.group__schedule {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
+  &__schedule__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    @media screen and (max-width: $break-tablet) {
+      margin-bottom: 5px;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__schedule {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    @media screen and (max-width: $break-tablet) {
+      display: none;
+      visibility: hidden;
+    }
+
+    &--inline {
+      display: flex;
+      flex-direction: column;
+      display: none;
+      visibility: hidden;
+    
+      @media screen and (max-width: $break-tablet) {
+        display: block;
+        visibility: visible;
+      }
+    }
+  }
 }
 
 .schedule {

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import GroupTable from './GroupTable'
 import EnrollButton from './EnrollButton'
 
-import './CourseTable.scss'
+import './CourseTableSection.scss'
 
 class CourseTableSection extends Component {
   state = {
@@ -131,7 +131,7 @@ class CourseTableSection extends Component {
 
     return (
       <div className="course-table-section">
-        <h2 className="course-table-section__header"> {title}</h2>
+        <h2 className="course-table-section__header">{title}</h2>
         <div className="course-list__container">
           <div className="course-list__header">
             <span className="col--name">Nimi</span>

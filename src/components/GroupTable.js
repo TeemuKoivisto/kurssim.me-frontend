@@ -31,20 +31,30 @@ const GroupTable = ({ groups }) => (
           <div className="group__maximum">
             {group.enrollment_max}
           </div>
-          <div className="group__schedule__container">
+          <div className="group__schedule__wrapper">
             {group.schedule.map((s, i) => (
-              <div key={i} className="group__schedule">
-                <div className="schedule__day">
-                  {s.day}
+              <div key={i} className="group__schedule__container">
+                <div className="group__schedule">
+                  <div className="schedule__day">
+                    {s.day}
+                  </div>
+                  <div className="schedule__date">
+                    {s.date}
+                  </div>
+                  <div className="schedule__time">
+                    {s.time}
+                  </div>
+                  <div className="schedule__classroom">
+                    {s.classroom}
+                  </div>
                 </div>
-                <div className="schedule__date">
-                  {s.date}
-                </div>
-                <div className="schedule__time">
-                  {s.time}
-                </div>
-                <div className="schedule__classroom">
-                  {s.classroom}
+                <div className="group__schedule--inline">
+                  <div className="schedule__day-date">
+                      {`${s.day} ${s.date}`}
+                  </div>
+                  <div className="schedule__time-classroom">
+                    {`${s.time} ${s.classroom}`}
+                  </div>
                 </div>
               </div>
             ))}
