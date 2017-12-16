@@ -49,20 +49,18 @@ class CourseTableSection extends Component {
     )
 
     const courseVisibility = showCourse ? '' : 'hidden'
-    const visibilityClass = this.state.shownCourseDetail[course.id]
-      ? ''
-      : 'hidden'
+    const courseDetailVisibility = this.state.shownCourseDetail[course.id] ? '' : 'hidden'
     // const visibilityClass = this.state.shownCourseDetail[course.id] ? 'slide-in' : 'slide-out'
     // {"enrolled": 8, "enrollment_max": 99, "enrollment_start_date": "14.08.17", "enrollment_end_date": "20.10.17", "group_name": "Ryhm\u00e4 99 (Jono - jos ryhm\u00e4t ovat t\u00e4ynn\u00e4 tai ajat eiv\u00e4t sovi)", "group_teacher": "", "schedule": [{"time": "06.09.17", "classroom": ""}], "group_languages": ""}]}
     return (
-      <div key={id} className={`course-list__item__container ${courseVisibility}`}>
+      <li key={id} className={`course__container ${courseVisibility}`}>
         <div
-          className="course-list__item"
+          className="course__title-box"
           onClick={this.handleShowDetailClick.bind(this, course)}
         >
-          <div className="course-list__item__name col--name">
-            <h4 className="course-list__item__header">
-              <span className="course-list__item__header-text">{name}</span>
+          <div className="course__name col--name">
+            <h4 className="course__header">
+              <span className="course__header-text">{name}</span>
             </h4>
           </div>
           <div className="col--date">{start_date}</div>
@@ -76,24 +74,24 @@ class CourseTableSection extends Component {
           </div>
         </div>
 
-        <div className={`course-list__item__body ${visibilityClass}`}>
-          <div className="course-list__item__info">
-            <div className="course-list__item__key col--key">
-              <div className="course-list__item__format">{'Tyyppi: '}</div>
-              <div className="course-list__item__course-page">
+        <div className={`course__body ${courseDetailVisibility}`}>
+          <div className="course__info">
+            <div className="course__key col--key">
+              <div className="course__format">{'Tyyppi: '}</div>
+              <div className="course__course-page">
                 {'Kurssisivu: '}
               </div>
-              <div className="course-list__item__weboodi">
+              <div className="course__weboodi">
                 {'Weboodi: '}
               </div>
-              <div className="course-list__item__date">{'Ajankohta: '}</div>
-              <div className="course-list__item__enrollment">{'Ilmo: '}</div>
-              <div className="course-list__item__teachers">{'Opettajat: '}</div>
+              <div className="course__date">{'Ajankohta: '}</div>
+              <div className="course__enrollment">{'Ilmo: '}</div>
+              <div className="course__teachers">{'Opettajat: '}</div>
             </div>
 
-            <div className="course-list__item__value col--value">
+            <div className="course__value col--value">
               <div className="">{format}</div>
-              <div className="course-list__item__course-page">
+              <div className="course__course-page">
                 <a
                   href={opintoni_url}
                   target="_blank"
@@ -102,7 +100,7 @@ class CourseTableSection extends Component {
                   {opintoni_url}
                 </a>
               </div>
-              <div className="course-list__item__weboodi">
+              <div className="course__weboodi">
                 <a
                   href={oodi_url}
                   target="_blank"
@@ -113,7 +111,9 @@ class CourseTableSection extends Component {
               </div>
               <div className="">{date}</div>
               <div className="">{enrollmentDate}</div>
-              <div className="">{teachers}</div>
+              <div className="course-teachers">{teachers.map(t =>
+                <span>{t}</span>)}
+              </div>
             </div>
           </div>
 
@@ -123,7 +123,7 @@ class CourseTableSection extends Component {
 
           {open && <EnrollButton oodi_url={oodi_url} />}
         </div>
-      </div>
+      </li>
     )
   }
 

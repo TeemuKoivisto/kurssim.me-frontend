@@ -3,7 +3,7 @@
 }
 
 .course-table-section__header {
-  margin: 30px 0 0 0;
+  margin: 30px 0 10px 0;
 }
 
 .course-list__container {
@@ -49,58 +49,60 @@
   padding: 0;
 }
 
-.course-list__item__container {
+/* Below single course specific classes */
+
+.course__container {
   border: 1px solid $color-grey-border;
   border-radius: 3px;
   margin-bottom: 5px;
-  cursor: pointer;
 }
 
-.course-list__item {
+.course__title-box {
   display: flex;
   flex-direction: row;
   align-items: center;
   animation-name: to-max-width;
   animation-duration: 2s;
   padding: 5px;
+  cursor: pointer;  
 }
 
-.course-list__item__course-page {
+.course__course-page {
   overflow-x: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.course-list__item__weboodi {
+.course__weboodi {
   overflow-x: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.course-list__item__header {
+.course__header {
   display: flex;
   flex-direction: row;
   margin: 0;
   padding: 0;
 }
 
-.course-list__item__header__link {
+.course__header__link {
   margin: 0.2em 6px 0 0;
   text-decoration: none;
 }
 
-.course-list__item__date {
+.course__date {
 }
 
-.course-list__item__credits {
+.course__credits {
 }
 
-.course-list__item__header-text {
+.course__header-text {
   margin: 0 4px 0 2px;
   word-break: break-word;
 }
 
-.course-list__item__body {
+.course__body {
   background-color: $color-course-background;
   display: flex;
   flex-direction: column;
@@ -109,20 +111,20 @@
   transition: transform 400ms ease-in; */
 }
 
-.course-list__item__info {
+.course__info {
   display: flex;
 }
 
-.course-list__item__key {
+.course__key {
   font-weight: bold;
 }
 
-.course-list__item__button-row {
+.course__button-row {
   display: flex;
   justify-content: flex-end;
 }
 
-.course-list__item__button {
+.course__button {
   /* margin: 2px 0; */
   text-decoration: none;
   padding: 5px 10px;
@@ -131,7 +133,7 @@
   border-radius: 5px;
 }
 
-.course-list__item__button-link {
+.course__button-link {
   text-decoration: none;
   color: #000;
   font-weight: bold;
@@ -145,15 +147,24 @@
   transform: translateY(-220px);
 }
 
-.course-list__item__enrollment {
+.course__enrollment {
 }
 
-.course-list__item__teacher__list {
+.course-teachers {
+  > span {
+    margin: 0 10px 0 0;
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.course__teacher__list {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.course-list__item__teacher__item {
+.course__teacher__item {
   margin: 0;
 }

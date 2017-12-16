@@ -62,9 +62,12 @@ class FrontPage extends Component {
   }
 
   filterCourseIds(input, courses) {
-    return courses.filter(c => c.name.toLowerCase().includes(input) || c.tag.toLowerCase().includes(input)
-      || c.type.toLowerCase().includes(input) || c.format.toLowerCase().includes(input) || c.start_date.toLowerCase().includes(input)
-      || c.end_date.toLowerCase().includes(input) || c.credits.toString().includes(input)).map(c => c.id)
+    const includes = (text) => text.toLowerCase().includes(input)
+    const listIncludes = (list) => list.some(current => includes(current))
+    
+    return courses.filter(c => includes(c.name) || includes(c.tag) || includes(c.type) || includes(c.format)
+      || includes(c.start_date) || includes(c.end_date) || includes(c.credits.toString())
+      || listIncludes(c.teachers)).map(c => c.id)
   }
 
   componentDidMount() {
@@ -89,6 +92,8 @@ class FrontPage extends Component {
       const stateChange = Object.assign({}, this.state)
       stateChange.selected.view = "table"
       this.setState(stateChange)
+    } else if (type === "togglePeriod") {
+      console.log('toggling period!')
     }
   }
 
@@ -112,15 +117,14 @@ class FrontPage extends Component {
     const { study_field } = this.state.selected
     return (
       <div className="studyfield__container">
-        <div>
-          <select onChange={this.handleChange.bind(this, "selectStudyField")}
-            value={study_field.name}
-          >
-          { study_fields.map(f => 
-            <option key={f.id} value={f.id}>{f.name}</option>
-          )}
-          </select>
-        </div>
+        <select onChange={this.handleChange.bind(this, "selectStudyField")}
+          value={study_field.name}
+          className="dropdown-default"
+        >
+        { study_fields.map(f => 
+          <option key={f.id} value={f.id}>{f.name}</option>
+        )}
+        </select>
       </div>
     )
   }
@@ -128,9 +132,13 @@ class FrontPage extends Component {
   renderPeriods() {
     const { periods } = this.state.selected
     return (
-      <div>
+      <div className="period__container">
         { periods.map((period, i) => 
-          <button key={period.name}>{ period.name }</button>
+          <button key={period.name} className="btn-default"
+            onClick={this.handleClick.bind(this, "togglePeriod")}
+          >
+            { period.name }
+          </button>
         )}
       </div>
     )

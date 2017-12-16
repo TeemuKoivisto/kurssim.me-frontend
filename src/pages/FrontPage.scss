@@ -16,6 +16,17 @@
   justify-content: center;
 }
 
+.period__container {
+  margin: 5px 0 0 0;
+
+  > button {
+    margin: 5px 5px 0 0;
+    &:last-child {
+      margin: 5px 0 0 0;
+    }
+  }
+}
+
 .course-search__container {
   display: flex;
   flex-direction: row;
@@ -47,4 +58,36 @@
   .front-page__container {
     max-width: 1200px;
   }
+}
+
+.btn-default {
+  color: #FFF;
+  background-color: #0095ff;
+  border-color: #07c;
+  box-shadow: inset 0 1px 0 #66bfff;
+  display: inline-block;
+  position: relative;
+  padding: .61538462em 1em;
+  vertical-align: middle;
+  min-height: 2.46153846em;
+  box-sizing: border-box;
+  font-weight: 400;
+  font-family: inherit;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  outline: none;
+  touch-action: manipulation;
+  transition: all .1s ease-in;
+}
+
+.dropdown-default {
+  text-decoration: none;
+  padding: 5px 10px;
+  background-color: $color-main;
+  border: 1px solid $color-grey-border;
+  border-radius: 5px;
 }
