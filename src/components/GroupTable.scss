@@ -19,29 +19,37 @@
       background-color: $color-group-list-item;    
     }
 
-    &__inline-header {
-      display: flex;
+    @media screen and (max-width: $break-tablet) {
       flex-direction: column;
-      display: none;
-      visibility: hidden;
-    
-      @media screen and (max-width: $break-tablet) {
-        display: block;
-        visibility: visible;
-        width: 30%;
-      }
-    }
-
-    &__body {
-      display: flex;
-      flex-direction: row;
       width: 100%;
-    
-      @media screen and (max-width: $break-tablet) {
-        flex-direction: column;
-        width: 70%;
+
+      > div {
+        border-bottom: 1px solid black;
+        &:last-child {
+          border-bottom: 0;
+        }
       }
     }
+  }
+}
+
+@mixin visible-on-tablet($display) {
+  display: none;
+  visibility: hidden;
+
+  @media screen and (max-width: $break-tablet) {
+    display: $display;
+    visibility: visible;
+  }
+}
+
+@mixin hidden-on-tablet($display) {
+  display: $display;
+  visibility: visible;
+
+  @media screen and (max-width: $break-tablet) {
+    display: none;
+    visibility: hidden;
   }
 }
 
@@ -52,31 +60,52 @@
   width: $width;
 }
 
+.row--inline {
+  @include visible-on-tablet(flex);
+  
+  > div {
+    &:first-child {
+      width: 30%;
+    }
+    &:last-child {
+      width: 70%;
+    }
+  }
+}
+
 .group {
   &__name {
-    @include expand-on-tablet(15%);
+    width: 15%;
+    @include hidden-on-tablet(block);
+    
   }
 
   &__teacher {
-    @include expand-on-tablet(25%);
+    width: 25%;
+    @include hidden-on-tablet(block);
+    
   }
 
   &__enrolled {
-    @include expand-on-tablet(7%);
+    width: 7%;
+    @include hidden-on-tablet(block);
   }
 
   &__maximum {
-    @include expand-on-tablet(7%);
+    width: 7%;
+    @include hidden-on-tablet(block);
   }
 
   &__schedule__header {
-    @include expand-on-tablet(46%);
+    width: 46%;
+    @include hidden-on-tablet(block);
   }
 
   &__schedule__wrapper {
     display: flex;
     flex-direction: column;
-    @include expand-on-tablet(46%);
+    width: 46%;
+    @include hidden-on-tablet(block);    
   }
 
   &__schedule__container {
