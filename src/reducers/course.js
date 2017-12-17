@@ -1,4 +1,6 @@
 
+import moment from 'moment'
+
 import {
   COURSE_GET_ALL,
   COURSE_SET_SELECTED,
@@ -9,6 +11,19 @@ const INITIAL_STATE = {
   courses: [],
   selectedCourses: [],
   shownCourseIds: []
+}
+
+function parseEnrollmentOpen(course) {
+  const startDate = moment(course.enrollment_start_date, 'DD-MM-YYYY')
+  const endDate = moment(course.enrollment_end_date, 'DD-MM-YYYY')
+  return moment(new Date()).isBetween(startDate, endDate)
+
+}
+
+function addExtraFieldsToCourses(courses) {
+  return courses.map(c => {
+    return { ...c, open: parseEnrollmentOpen(c) }
+  })
 }
 
 function sortCourses(a, b) {
@@ -28,7 +43,7 @@ export default function (state = INITIAL_STATE, action) {
     case COURSE_SET_SHOWN:
       return { ...state, shownCourseIds: action.payload }
     case COURSE_GET_ALL + '_SUCCESS':
-      return { ...state, courses: action.payload.sort(sortCourses) }
+      return { ...state, courses: addExtraFieldsToCourses(action.payload).sort(sortCourses) }
     case COURSE_GET_ALL + '_REQUEST':
     case COURSE_GET_ALL + '_FAIL':
     default:

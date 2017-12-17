@@ -27,7 +27,7 @@ class CourseTable extends Component {
     const { selectedCourses, shownCourseIds } = this.props
     const { types } = this.state
     const groupedCourses = this.groupCoursesByType(selectedCourses)
-
+    // console.log(selectedCourses)
     return (
       <div className="course-table">
         {types.map((type, i) => (

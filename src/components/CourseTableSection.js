@@ -79,12 +79,13 @@ class CourseTableSection extends Component {
 
           <CourseInfo format={format} opintoni_url={opintoni_url} oodi_url={oodi_url}
             date={date} enrollmentDate={enrollmentDate} teachers={teachers}/>
+          
+          {open && <EnrollButton oodi_url={oodi_url} />}
 
           {groups.length !== 0 && (
             <GroupTable groups={groups} />
           )}
 
-          {open && <EnrollButton oodi_url={oodi_url} />}
         </div>
       </li>
     )
