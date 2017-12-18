@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 import CourseInfo from './CourseInfo'
 import GroupTable from './GroupTable'
-import EnrollButton from './EnrollButton'
 
 import './CourseTableSection.scss'
 
@@ -76,16 +75,18 @@ class CourseTableSection extends Component {
         </div>
 
         <div className={`course__body ${courseDetailVisibility}`}>
+          <CourseInfo
+            format={format}
+            opintoni_url={opintoni_url}
+            oodi_url={oodi_url}
+            date={date}
+            enrollmentDate={enrollmentDate}
+            teachers={teachers}
+          />
 
-          <CourseInfo format={format} opintoni_url={opintoni_url} oodi_url={oodi_url}
-            date={date} enrollmentDate={enrollmentDate} teachers={teachers}/>
-          
+          {groups.length !== 0 && <GroupTable groups={groups} />}
+
           {open && <EnrollButton oodi_url={oodi_url} />}
-
-          {groups.length !== 0 && (
-            <GroupTable groups={groups} />
-          )}
-
         </div>
       </li>
     )
@@ -112,5 +113,21 @@ class CourseTableSection extends Component {
     )
   }
 }
+
+const EnrollButton = ({ oodi_url }) => (
+  <div className="course__btn__container">
+    <div className="course__btn">
+      <a
+        className="course__btn__link"
+        target="_blank"
+        rel="noopener noreferrer"
+        href={oodi_url}
+      >
+        {'Ilmoittaudu '}
+        <i className="fa fa-angle-right" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+)
 
 export default CourseTableSection
