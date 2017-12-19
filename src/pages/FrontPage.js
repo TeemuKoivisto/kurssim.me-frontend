@@ -186,7 +186,6 @@ class FrontPage extends Component {
   renderSearch() {
     return (
       <div className="search__form-group">
-        <h3>Hae</h3>
         <input
           className="search__form-group__input"
           onChange={this.onSearch}
