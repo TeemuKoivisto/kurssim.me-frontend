@@ -126,7 +126,6 @@ class FrontPage extends Component {
     () => {
       const { setShownCourses, selectedCourses } = this.props
       const searched = this._searchInput.value.toLowerCase()
-
       setShownCourses(this.filterCourseIds(searched, selectedCourses))
     },
     500,
@@ -185,12 +184,16 @@ class FrontPage extends Component {
 
   renderSearch() {
     return (
-      <div className="search__form-group">
-        <input
-          className="search__form-group__input"
-          onChange={this.onSearch}
-          ref={ref => (this._searchInput = ref)}
-        />
+      <div className="search__container">
+        <div className="search__input-group">
+          <input
+            className="search__input"
+            onChange={this.onSearch}
+            ref={ref => (this._searchInput = ref)}
+            placeholder={'Hae..'}
+          />
+          <i className="fa fa-search search__icon" aria-hidden="true" />
+        </div>
       </div>
     )
   }
