@@ -137,17 +137,20 @@ class FrontPage extends Component {
     const { study_field } = this.state.selected
     return (
       <div className="studyfield__container">
-        <select
-          onChange={this.handleFieldChange.bind(this)}
-          value={study_field.name}
-          className="dropdown-default"
-        >
-          {study_fields.map(f => (
-            <option key={f.id} value={f.id}>
-              {f.name}
-            </option>
-          ))}
-        </select>
+        <div className="studyfield__input-group">
+          <select
+            onChange={this.handleFieldChange.bind(this)}
+            value={study_field.name}
+            className="dropdown-default"
+          >
+            {study_fields.map(f => (
+              <option key={f.id} value={f.id}>
+                {f.name}
+              </option>
+            ))}
+          </select>
+          <i className="fa fa-caret-down" aria-hidden="true" />
+        </div>
       </div>
     )
   }
@@ -187,7 +190,7 @@ class FrontPage extends Component {
       <div className="search__container">
         <div className="search__input-group">
           <input
-            className="search__input"
+            className="input-default"
             onChange={this.onSearch}
             ref={ref => (this._searchInput = ref)}
             placeholder={'Hae..'}

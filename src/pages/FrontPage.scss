@@ -13,9 +13,29 @@
 
 .studyfield__container {
   display: flex;
+}
+
+.studyfield__input-group {
+  display: flex;
   flex-direction: row;
   justify-content: center;
+  position: relative;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  flex: 1;
+
+  > select {
+    flex: 1;
+  }
+
+  > i {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+  }
 }
+
 
 .period__container {
   margin: 5px 0 0 0;
@@ -36,30 +56,24 @@
 .search__input-group {
   margin-left: auto;
   margin-right: auto;
-  max-width: 800px;
+  max-width: 600px;
   position: relative;
   padding: 10px 0 10px;
   flex: 1;
   display: flex;
-}
 
-.search__input {
-  flex: 1;
-  font-size: 1.5em;
-  height: 20px;
-  border-radius: 5px;
-  font-size: calc(16px);
-  padding: 10px 10px 10px 32px;
-  outline: 0;
-  border: 1px solid $color-grey-border;
+  > input {
+    flex: 1;
+    padding: 10px 10px 10px 32px;
+  }
 }
 
 .search__icon {
-  top: 22px;
+  top: 21px;
   left: 10px;
   position: absolute;
   pointer-events: none;
-  font-size: calc(16px);
+  font-size: calc(14px);
 }
 
 
@@ -92,15 +106,23 @@
   border-radius: 2px;
   border: 1px solid transparent;
   cursor: pointer;
-  outline: none;
   touch-action: manipulation;
   transition: all .1s ease-in;
 }
 
 .dropdown-default {
   text-decoration: none;
-  padding: 5px 10px;
+  padding: 10px;
   background-color: $color-main;
   border: 1px solid $color-grey-border;
   border-radius: 5px;
+  font-size: calc(14px);
+  appearance: none;
+}
+
+.input-default {
+  border-radius: 5px;
+  font-size: calc(14px);
+  padding: 10px;
+  border: 1px solid $color-grey-border;
 }
