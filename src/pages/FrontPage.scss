@@ -26,19 +26,23 @@
   flex: 1;
 
   > select {
-    flex: 1;
+    width: 100%;
+    padding-right: 22px;
   }
 
   > i {
-    position: absolute;
-    top: 12px;
     right: 10px;
+    top: 50%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    pointer-events: none;
   }
 }
 
 
 .period__container {
-  margin: 5px 0 0 0;
+  margin: 10px 0 0;
 
   > button {
     margin: 5px 5px 0 0;
@@ -49,6 +53,7 @@
 }
 
 .search__container {
+  margin: 15px 0 0;
   display: flex;
   flex-direction: row;
 }
@@ -58,27 +63,27 @@
   margin-right: auto;
   max-width: 600px;
   position: relative;
-  padding: 10px 0 10px;
   flex: 1;
   display: flex;
 
   > input {
-    flex: 1;
+    width: 100%;
     padding: 10px 10px 10px 32px;
   }
-}
 
-.search__icon {
-  top: 21px;
-  left: 10px;
-  position: absolute;
-  pointer-events: none;
-  font-size: calc(14px);
+  > i {
+    left: 16px;
+    top: 50%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    pointer-events: none;
+  }
 }
 
 
 .main-header {
-  margin: 40px 0 40px 0;
+  margin: 30px 0px;
 }
 
 @media screen and (min-width: $break-desktop){
@@ -87,18 +92,14 @@
   }
 }
 
-.btn-default {
-  color: #FFF;
-  background-color: #0095ff;
-  border-color: #07c;
-  box-shadow: inset 0 1px 0 #66bfff;
+.btn {
   display: inline-block;
   position: relative;
   padding: .61538462em 1em;
   vertical-align: middle;
   min-height: 2.46153846em;
   box-sizing: border-box;
-  font-weight: 400;
+  font-weight: bold;
   font-family: inherit;
   line-height: 1;
   text-align: center;
@@ -108,6 +109,21 @@
   cursor: pointer;
   touch-action: manipulation;
   transition: all .1s ease-in;
+  font-size: calc(14px);
+}
+
+.btn-default {
+  @extend .btn;
+  color: #000;
+  background-color: $color-main;
+  border: 1px solid $color-grey-border;
+}
+
+.btn-active {
+  @extend .btn;
+  color: #FFF;
+  background-color: #0095ff;
+  border: 1px solid #0095ff;
 }
 
 .dropdown-default {
@@ -125,4 +141,5 @@
   font-size: calc(14px);
   padding: 10px;
   border: 1px solid $color-grey-border;
+  appearance: none;
 }

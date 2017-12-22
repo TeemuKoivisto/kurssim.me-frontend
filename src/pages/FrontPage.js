@@ -162,7 +162,7 @@ class FrontPage extends Component {
         {periods.map((period, i) => (
           <button
             key={period.name}
-            className="btn-default"
+            className="btn-active"
             onClick={this.handleClick.bind(this, 'togglePeriod')}
           >
             {period.name}
