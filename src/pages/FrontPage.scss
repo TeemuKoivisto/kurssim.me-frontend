@@ -7,17 +7,42 @@
 .front-page__top-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex: 1;
+  height: 100%;
 }
 
 .studyfield__container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
 }
 
+.studyfield__input-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  flex: 1;
+
+  > select {
+    width: 100%;
+    padding-right: 22px;
+  }
+
+  > i {
+    right: 10px;
+    top: 50%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    pointer-events: none;
+  }
+}
+
+
 .period__container {
-  margin: 5px 0 0 0;
+  margin: 10px 0 0;
 
   > button {
     margin: 5px 5px 0 0;
@@ -27,31 +52,38 @@
   }
 }
 
-.course-search__container {
+.search__container {
+  margin: 15px 0 0;
   display: flex;
   flex-direction: row;
-  justify-content: center;
 }
 
-.search__form-group {
+.search__input-group {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+  position: relative;
+  flex: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin: 10px 0 10px 0;
+
+  > input {
+    width: 100%;
+    padding: 10px 10px 10px 32px;
+  }
+
+  > i {
+    left: 16px;
+    top: 50%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    pointer-events: none;
+  }
 }
 
-.search__form-group__input {
-  font-size: 1.5em;
-  height: 20px;
-  width: 100%;
-  max-width: 500px;
-  padding: 5px 2px 5px 2px;
-  border-radius: 5px;
-}
 
 .main-header {
-  margin: 40px 0 40px 0;
+  margin: 30px 0px;
 }
 
 @media screen and (min-width: $break-desktop){
@@ -60,18 +92,14 @@
   }
 }
 
-.btn-default {
-  color: #FFF;
-  background-color: #0095ff;
-  border-color: #07c;
-  box-shadow: inset 0 1px 0 #66bfff;
+.btn {
   display: inline-block;
   position: relative;
   padding: .61538462em 1em;
   vertical-align: middle;
   min-height: 2.46153846em;
   box-sizing: border-box;
-  font-weight: 400;
+  font-weight: bold;
   font-family: inherit;
   line-height: 1;
   text-align: center;
@@ -79,15 +107,39 @@
   border-radius: 2px;
   border: 1px solid transparent;
   cursor: pointer;
-  outline: none;
   touch-action: manipulation;
   transition: all .1s ease-in;
+  font-size: calc(14px);
+}
+
+.btn-default {
+  @extend .btn;
+  color: #000;
+  background-color: $color-main;
+  border: 1px solid $color-grey-border;
+}
+
+.btn-active {
+  @extend .btn;
+  color: #FFF;
+  background-color: #0095ff;
+  border: 1px solid #0095ff;
 }
 
 .dropdown-default {
   text-decoration: none;
-  padding: 5px 10px;
+  padding: 10px;
   background-color: $color-main;
   border: 1px solid $color-grey-border;
   border-radius: 5px;
+  font-size: calc(14px);
+  appearance: none;
+}
+
+.input-default {
+  border-radius: 5px;
+  font-size: calc(14px);
+  padding: 10px;
+  border: 1px solid $color-grey-border;
+  appearance: none;
 }

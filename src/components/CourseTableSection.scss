@@ -84,7 +84,6 @@
   }
 
   &__btn {
-    /* margin: 2px 0; */
     text-decoration: none;
     padding: 5px 10px;
     background-color: $color-main;
@@ -94,7 +93,7 @@
     &__container {
       display: flex;
       justify-content: flex-end;
-      margin: 5px 0 5px 0;
+      margin: 5px 0 0 0;
     }
 
     &__link {

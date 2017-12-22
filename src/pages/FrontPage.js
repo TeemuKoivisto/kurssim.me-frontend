@@ -126,7 +126,6 @@ class FrontPage extends Component {
     () => {
       const { setShownCourses, selectedCourses } = this.props
       const searched = this._searchInput.value.toLowerCase()
-
       setShownCourses(this.filterCourseIds(searched, selectedCourses))
     },
     500,
@@ -138,17 +137,20 @@ class FrontPage extends Component {
     const { study_field } = this.state.selected
     return (
       <div className="studyfield__container">
-        <select
-          onChange={this.handleFieldChange.bind(this)}
-          value={study_field.name}
-          className="dropdown-default"
-        >
-          {study_fields.map(f => (
-            <option key={f.id} value={f.id}>
-              {f.name}
-            </option>
-          ))}
-        </select>
+        <div className="studyfield__input-group">
+          <select
+            onChange={this.handleFieldChange.bind(this)}
+            value={study_field.name}
+            className="dropdown-default"
+          >
+            {study_fields.map(f => (
+              <option key={f.id} value={f.id}>
+                {f.name}
+              </option>
+            ))}
+          </select>
+          <i className="fa fa-caret-down" aria-hidden="true" />
+        </div>
       </div>
     )
   }
@@ -160,7 +162,7 @@ class FrontPage extends Component {
         {periods.map((period, i) => (
           <button
             key={period.name}
-            className="btn-default"
+            className="btn-active"
             onClick={this.handleClick.bind(this, 'togglePeriod')}
           >
             {period.name}
@@ -185,13 +187,16 @@ class FrontPage extends Component {
 
   renderSearch() {
     return (
-      <div className="search__form-group">
-        <h3>Hae</h3>
-        <input
-          className="search__form-group__input"
-          onChange={this.onSearch}
-          ref={ref => (this._searchInput = ref)}
-        />
+      <div className="search__container">
+        <div className="search__input-group">
+          <input
+            className="input-default"
+            onChange={this.onSearch}
+            ref={ref => (this._searchInput = ref)}
+            placeholder={'Hae..'}
+          />
+          <i className="fa fa-search search__icon" aria-hidden="true" />
+        </div>
       </div>
     )
   }
