@@ -1,0 +1,18 @@
+{
+  "short_name": "Kurssimme",
+  "name": "Vaihtoehtoinen TKTL:n Kurssisivu",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#e9af43",
+  "background_color": "#ffffff",
+  "icons": [{
+    "src": "kurssimme-icon-128.png",
+    "sizes": "128x128",
+    "type": "image/png"
+  },
+  {
+    "src": "kurssimme-icon-256.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  }]
+}
