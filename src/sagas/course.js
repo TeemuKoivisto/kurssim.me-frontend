@@ -31,17 +31,17 @@ function filterCoursesBySearched(courses, searched) {
 }
 
 function filterCoursesByPeriods(courses, periods) {
-  return courses.filter(c => c.periods.every(p => periods.includes(p)))
+  return courses.filter(c => !c.periods.every(p => periods.includes(p)))
 }
 
 function* computeShownCourses(action) {
   const selectedCourses = yield select(getSelectedCourses)
   const searchInput = yield select(getSearchInput)
   const periods = yield select(getPeriods)
-  const selectedPeriods = periods.filter(p => p.selected === true).map(p => p.name)
+  const unselectedPeriods = periods.filter(p => p.selected === false).map(p => p.name)
 
   const filteredBySearch = filterCoursesBySearched(selectedCourses, searchInput)
-  const filteredByPeriods = filterCoursesByPeriods(filteredBySearch, selectedPeriods)
+  const filteredByPeriods = filterCoursesByPeriods(filteredBySearch, unselectedPeriods)
   const shownCourseIds = filteredByPeriods.map(c => c.id)
 
   yield put({ type: COURSE_SET_SHOWN, payload: shownCourseIds })
