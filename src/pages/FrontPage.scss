@@ -130,6 +130,13 @@
   border: 1px solid #0095ff;
 }
 
+.btn-inactive {
+  @extend .btn;
+  color: #FFF;
+  background-color: hsla(205, 100%, 50%, 0.514);
+  border: 1px solid hsla(205, 100%, 50%, 0.514);
+}
+
 .dropdown-default {
   text-decoration: none;
   padding: 10px;

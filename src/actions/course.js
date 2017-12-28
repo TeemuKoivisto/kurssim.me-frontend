@@ -1,3 +1,4 @@
+export const PERIOD_TOGGLE = 'PERIOD_TOGGLE'
 export const COURSE_GET_ALL = 'COURSE_GET_ALL'
 export const COURSE_SET_SELECTED = 'COURSE_SET_SELECTED'
 export const COURSE_SET_SHOWN = 'COURSE_SET_SHOWN'
@@ -11,6 +12,11 @@ export const COURSE_SET_SHOWN = 'COURSE_SET_SHOWN'
 //     }
 //   }
 // })
+
+export const togglePeriod = (period) => ({
+  type: PERIOD_TOGGLE,
+  payload: period
+})
 
 export const getCourses = () => ({
   type: COURSE_GET_ALL,

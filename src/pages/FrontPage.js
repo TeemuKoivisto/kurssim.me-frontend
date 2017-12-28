@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
 
 import {
+  togglePeriod,
   getCourses,
   setSelectedCourses,
   setShownCourses
@@ -19,13 +20,6 @@ class FrontPage extends Component {
         id: 'all',
         name: 'Kaikki'
       },
-      periods: [
-        { name: 'Periodi I', selected: true },
-        { name: 'Periodi II', selected: true },
-        { name: 'Periodi III', selected: true },
-        { name: 'Periodi IV', selected: true },
-        { name: 'Periodi V', selected: true }
-      ],
       view: 'list'
     },
     study_fields: [
@@ -102,7 +96,7 @@ class FrontPage extends Component {
     }
   }
 
-  handleClick(type, e) {
+  handleClick(type, value, e) {
     if (type === 'selectList') {
       const stateChange = Object.assign({}, this.state)
       stateChange.selected.view = 'list'
@@ -112,7 +106,7 @@ class FrontPage extends Component {
       stateChange.selected.view = 'table'
       this.setState(stateChange)
     } else if (type === 'togglePeriod') {
-      console.log('toggling period!')
+      this.props.togglePeriod(value)
     }
   }
 
@@ -156,14 +150,14 @@ class FrontPage extends Component {
   }
 
   renderPeriods() {
-    const { periods } = this.state.selected
+    const { periods } = this.props
     return (
       <div className="period__container">
         {periods.map((period, i) => (
           <button
             key={period.name}
-            className="btn-active"
-            onClick={this.handleClick.bind(this, 'togglePeriod')}
+            className={period.selected ? "btn-active" : "btn-inactive"}
+            onClick={this.handleClick.bind(this, 'togglePeriod', period.name)}
           >
             {period.name}
           </button>
@@ -224,10 +218,14 @@ class FrontPage extends Component {
 const mapStateToProps = state => ({
   courses: state.course.courses,
   selectedCourses: state.course.selectedCourses,
-  shownCourseIds: state.course.shownCourseIds
+  shownCourseIds: state.course.shownCourseIds,
+  periods: state.course.periods
 })
 
 const mapDispatchToProps = dispatch => ({
+  togglePeriod(period) {
+    dispatch(togglePeriod(period))
+  },
   getCourses() {
     dispatch(getCourses())
   },
