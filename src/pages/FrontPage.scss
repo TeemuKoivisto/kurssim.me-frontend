@@ -127,14 +127,12 @@
   @extend .btn;
   color: #FFF;
   background-color: #0095ff;
-  border: 1px solid #0095ff;
 }
 
 .btn-inactive {
   @extend .btn;
   color: #FFF;
-  background-color: hsla(205, 100%, 50%, 0.514);
-  border: 1px solid hsla(205, 100%, 50%, 0.514);
+  background-color: hsla(205, 100%, 50%, 0.5);
 }
 
 .dropdown-default {
@@ -145,6 +143,10 @@
   border-radius: 5px;
   font-size: calc(14px);
   appearance: none;
+
+  > option {
+    padding: 4px 2px;
+  }
 }
 
 .input-default {

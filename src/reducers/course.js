@@ -49,7 +49,8 @@ function initPeriods() {
 function getCurrentYearRange() {
   const currentYear = new Date().getFullYear()
   const currentMonth = new Date().getMonth()
-  if (currentMonth >= 8) {
+  // JS month is between 0-11 and first courses of the year start in August
+  if (currentMonth >= 7) {
     return [currentYear, currentYear + 1]
   } else {
     return [currentYear - 1, currentYear]
@@ -74,7 +75,7 @@ function parsePeriodDate(dateString, yearRange) {
     const month = parseInt(chunks[1], 10)
     const year = getPeriodYear(month, yearRange)
     // JS Date's months start from 0 eg. December is 11th month
-    return new Date(year, month - 1, day) // .toISOString()
+    return new Date(year, month - 1, day)
   })
 }
 
