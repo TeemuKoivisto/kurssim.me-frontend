@@ -6,7 +6,7 @@ import {
   togglePeriod,
   getCourses,
   setSelectedCourses,
-  setShownCourses
+  setSearchedCourse
 } from '../actions/course'
 
 import CourseTable from '../components/CourseTable'
@@ -43,7 +43,7 @@ class FrontPage extends Component {
   }
 
   setSelectedCourses(props, fieldId) {
-    const { courses } = props
+    const { courses, searchInput } = props
     if (fieldId === 'all') {
       // Filter duplicate courses since some courses belong to multiple study-fields
       let uniqueIds = []
@@ -55,35 +55,18 @@ class FrontPage extends Component {
         }
       })
       this.props.setSelectedCourses(filteredCourses)
-      this.props.setShownCourses(
-        this.filterCourseIds(this._searchInput.value, filteredCourses)
-      )
+      this.props.setSearchedCourse(searchInput)
+      // this.props.setShownCourses(
+      //   this.filterCourseIds(this._searchInput.value, filteredCourses)
+      // )
     } else {
       const filteredCourses = courses.filter(c => c.study_field === fieldId)
       this.props.setSelectedCourses(filteredCourses)
-      this.props.setShownCourses(
-        this.filterCourseIds(this._searchInput.value, filteredCourses)
-      )
+      this.props.setSearchedCourse(searchInput)
+      // this.props.setShownCourses(
+      //   this.filterCourseIds(this._searchInput.value, filteredCourses)
+      // )
     }
-  }
-
-  filterCourseIds(input, courses) {
-    const includes = text => text.toLowerCase().includes(input)
-    const listIncludes = list => list.some(current => includes(current))
-
-    return courses
-      .filter(
-        c =>
-          includes(c.name) ||
-          includes(c.tag) ||
-          includes(c.type) ||
-          includes(c.format) ||
-          includes(c.start_date) ||
-          includes(c.end_date) ||
-          includes(c.credits.toString()) ||
-          listIncludes(c.teachers)
-      )
-      .map(c => c.id)
   }
 
   componentDidMount() {
@@ -106,7 +89,9 @@ class FrontPage extends Component {
       stateChange.selected.view = 'table'
       this.setState(stateChange)
     } else if (type === 'togglePeriod') {
-      this.props.togglePeriod(value)
+      // const filtered = this.filterCourseIdsByPeriod(!value.selected, value.name, this.props.selectedCourses)
+      this.props.togglePeriod(value.name)
+      // this.setShownCourses(filtered)
     }
   }
 
@@ -118,9 +103,8 @@ class FrontPage extends Component {
 
   onSearch = debounce(
     () => {
-      const { setShownCourses, selectedCourses } = this.props
       const searched = this._searchInput.value.toLowerCase()
-      setShownCourses(this.filterCourseIds(searched, selectedCourses))
+      this.props.setSearchedCourse(searched)
     },
     500,
     { leading: true }
@@ -157,7 +141,7 @@ class FrontPage extends Component {
           <button
             key={period.name}
             className={period.selected ? "btn-active" : "btn-inactive"}
-            onClick={this.handleClick.bind(this, 'togglePeriod', period.name)}
+            onClick={this.handleClick.bind(this, 'togglePeriod', period)}
           >
             {period.name}
           </button>
@@ -180,6 +164,7 @@ class FrontPage extends Component {
   }
 
   renderSearch() {
+    // const { searchInput } = this.props
     return (
       <div className="search__container">
         <div className="search__input-group">
@@ -218,6 +203,7 @@ class FrontPage extends Component {
 const mapStateToProps = state => ({
   courses: state.course.courses,
   selectedCourses: state.course.selectedCourses,
+  searchInput: state.course.searchInput,
   shownCourseIds: state.course.shownCourseIds,
   periods: state.course.periods
 })
@@ -232,8 +218,8 @@ const mapDispatchToProps = dispatch => ({
   setSelectedCourses(courses) {
     dispatch(setSelectedCourses(courses))
   },
-  setShownCourses(courses) {
-    dispatch(setShownCourses(courses))
+  setSearchedCourse(searchInput) {
+    dispatch(setSearchedCourse(searchInput))
   }
 })
 

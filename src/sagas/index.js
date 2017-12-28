@@ -1,5 +1,7 @@
 import { all, fork, call, put, takeEvery } from 'redux-saga/effects'
 
+import { handleShownCourses } from './course'
+
 const createRequest = ({ method, url, data }) =>
   new Request({
     method,
@@ -50,5 +52,5 @@ function* handleFetch(action) {
 }
 
 export default function* root() {
-  yield all([fork(handleRequest), fork(handleFetch)])
+  yield all([fork(handleRequest), fork(handleFetch), fork(handleShownCourses)])
 }

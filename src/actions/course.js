@@ -1,6 +1,7 @@
 export const PERIOD_TOGGLE = 'PERIOD_TOGGLE'
 export const COURSE_GET_ALL = 'COURSE_GET_ALL'
 export const COURSE_SET_SELECTED = 'COURSE_SET_SELECTED'
+export const COURSE_SET_SEARCHED = 'COURSE_SET_SEARCHED'
 export const COURSE_SET_SHOWN = 'COURSE_SET_SHOWN'
 
 // export const getCourses = () => ({
@@ -42,6 +43,11 @@ export const getCourses = () => ({
 export const setSelectedCourses = (courses) => ({
   type: COURSE_SET_SELECTED,
   payload: courses,
+})
+
+export const setSearchedCourse = (searchInput) => ({
+  type: COURSE_SET_SEARCHED,
+  payload: searchInput,
 })
 
 export const setShownCourses = (courses) => ({

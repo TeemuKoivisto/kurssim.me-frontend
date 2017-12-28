@@ -5,6 +5,7 @@ import {
   PERIOD_TOGGLE,
   COURSE_GET_ALL,
   COURSE_SET_SELECTED,
+  COURSE_SET_SEARCHED,
   COURSE_SET_SHOWN
 } from '../actions/course'
 
@@ -13,6 +14,7 @@ import periods from './periods'
 const INITIAL_STATE = {
   courses: [],
   selectedCourses: [],
+  searchInput: '',
   shownCourseIds: [],
   periods: initPeriods()
 }
@@ -32,7 +34,7 @@ function initPeriods() {
   //   { name: 'Periodi V', selected: true }
   // ],
   const usedKeys = ["I periodi", "II periodi", "III periodi", "IV periodi"]
-  const values = usedKeys.map(key => {
+  return usedKeys.map(key => {
     const periodDateString = currentYearPeriods[key]
     const periodDates = parsePeriodDate(periodDateString, currentYearRange)
     return {
@@ -42,8 +44,6 @@ function initPeriods() {
       selected: true
     }
   })
-  // console.log(values)
-  return values
 }
 
 function getCurrentYearRange() {
@@ -121,6 +121,8 @@ export default function (state = INITIAL_STATE, action) {
       }
     case COURSE_SET_SELECTED:
       return { ...state, selectedCourses: action.payload.sort(sortCourses) }
+    case COURSE_SET_SEARCHED:
+      return { ...state, searchInput: action.payload }
     case COURSE_SET_SHOWN:
       return { ...state, shownCourseIds: action.payload }
     case COURSE_GET_ALL + '_SUCCESS':
