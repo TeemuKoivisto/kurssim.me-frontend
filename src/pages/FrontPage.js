@@ -43,7 +43,7 @@ class FrontPage extends Component {
   }
 
   setSelectedCourses(props, fieldId) {
-    const { courses, searchInput } = props
+    const { courses } = props
     if (fieldId === 'all') {
       // Filter duplicate courses since some courses belong to multiple study-fields
       let uniqueIds = []
@@ -55,17 +55,9 @@ class FrontPage extends Component {
         }
       })
       this.props.setSelectedCourses(filteredCourses)
-      this.props.setSearchedCourse(searchInput)
-      // this.props.setShownCourses(
-      //   this.filterCourseIds(this._searchInput.value, filteredCourses)
-      // )
     } else {
       const filteredCourses = courses.filter(c => c.study_field === fieldId)
       this.props.setSelectedCourses(filteredCourses)
-      this.props.setSearchedCourse(searchInput)
-      // this.props.setShownCourses(
-      //   this.filterCourseIds(this._searchInput.value, filteredCourses)
-      // )
     }
   }
 
@@ -89,9 +81,7 @@ class FrontPage extends Component {
       stateChange.selected.view = 'table'
       this.setState(stateChange)
     } else if (type === 'togglePeriod') {
-      // const filtered = this.filterCourseIdsByPeriod(!value.selected, value.name, this.props.selectedCourses)
       this.props.togglePeriod(value.name)
-      // this.setShownCourses(filtered)
     }
   }
 
