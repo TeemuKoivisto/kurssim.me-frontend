@@ -26,15 +26,7 @@ export const getCourses = () => ({
       exec() {
         return fetch('hy_courses.json')
           .then(res => res.text())
-          .then(data => {
-            const rows = data.split('\n')
-            // There is an empty line at the end of the file
-            if (rows[rows.length - 1].length < 10) {
-              rows.splice(rows.length - 1, 1)
-            } 
-            const courses = rows.map(row => JSON.parse(row))
-            return courses
-          })
+          .then(data => JSON.parse(data))
       }
     }
   }
