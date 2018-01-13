@@ -1,0 +1,21 @@
+
+.about-page__container {
+  text-align: center;
+  margin: auto;
+
+  @media screen and (min-width: $break-desktop){
+    max-width: 1200px;
+  }
+  
+  .front-page__link {
+    margin-top: 40px;
+  }
+
+  > p {
+    margin-top: 40px;
+  }
+
+  .github-link {
+    margin-top: 40px;
+  }
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import debounce from 'lodash/debounce'
 
 import {
@@ -185,6 +186,9 @@ class FrontPage extends Component {
           </p>
         </div>
         <CourseTable />
+        <div className="about-link">
+          <Link to="/about">About</Link>
+        </div>
       </div>
     )
   }
